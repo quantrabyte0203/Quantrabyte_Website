@@ -14,50 +14,51 @@ interface TeamMember {
 
 const teamGroups = [
   {
-    // title: "Leadership",
-    members: [
-      {
-        id: 1,
-        name: "Jotheraj Kori",
-        position: "Senior Tech Lead ",
-        bio: " AI/ML leader driving innovative solutions, transforming complex data into insights, and leading teams to deliver cutting-edge projects that accelerate business growth and technological advancement.",
-        image: teamMember2,
-      },
-    ],
-  },
-  {
-    // title: "Senior Tech Lead",
+    title: "Visionary Leadership",
     members: [
       {
         id: 2,
         name: "Anshul Thakur",
-        position: "Tech Lead",
-        bio: "Visionary leader with years of experience in full-stack development and AI-driven solutions. Passionate about leveraging emerging technologies to build scalable products and drive digital transformation.",
+        position: "CEO & Founder",
+        bio: "Visionary founder driving QuantraByte's mission with deep expertise in full-stack development and AI-driven solutions. Leading the charge in transforming innovative ideas into scalable, impactful products.",
         image: teamMember1,
       },
     ],
   },
   {
-    // title: "Quality Assuarance",
+    title: "Innovation & Strategy",
+    members: [
+      {
+        id: 1,
+        name: "Jotheraj Kori",
+        position: "CTO & Co-Founder",
+        bio: "AI/ML pioneer and co-founder architecting cutting-edge solutions. Transforming complex data into actionable insights while building teams that deliver next-generation technology products.",
+        image: teamMember2,
+      },
+    ],
+  },
+
+  {
+    title: "Quality & Excellence",
     members: [
       {
         id: 3,
         name: "Rahul Gupta",
-        position: "Senior QA lead",
-        bio: "QA expert ensuring software excellence through strategic testing, process improvements, and team leadership, delivering reliable, high-performing products in dynamic environments.",
+        position: "QA Director & Co-Founder",
+        bio: "Co-founder committed to engineering excellence. Building quality-first processes and leading initiatives that ensure every product meets the highest standards of reliability and performance.",
         image: teamMember3,
       },
     ],
   },
   {
-    // title: "Marketing/Management",
+    title: "Development & Engineering",
     members: [
       {
         id: 4,
         name: "Shobhit Gotiya",
-        position: "Chief Operational Lead",
-        bio: "Operational leader optimizing processes, managing teams, and driving efficiency to achieve measurable results and support sustainable business growth.",
-        image: teamMember4, // Use a different image if available
+        position: "Lead Developer & Co-Founder",
+        bio: "Co-founder and full-stack engineer building the technical backbone of QuantraByte. Specializing in modern React applications and creating seamless, intuitive user experiences.",
+        image: teamMember4,
       },
     ],
   },
@@ -69,11 +70,22 @@ const Team = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 fade-in-up">
-              Meet Our <span className="text-gradient">Team</span>
+              Meet Our <span className="text-gradient">Founders</span>
             </h2>
+            <p
+              className="text-lg text-muted-foreground max-w-2xl mx-auto fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              A team of visionary leaders and innovators dedicated to
+              transforming ideas into scalable solutions. Driven by passion,
+              expertise, and a shared commitment to excellence.
+            </p>
           </div>
+
+          {/* What Our Founders Say */}
+          {/* Removed - All team members are founders */}
 
           {/* Team Groups */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -81,9 +93,9 @@ const Team = () => {
               <div
                 key={group.title}
                 className="fade-in-up"
-                style={{ animationDelay: `${0.2 + idx * 0.1}s` }}
+                style={{ animationDelay: `${0.4 + idx * 0.1}s` }}
               >
-                <h3 className="text-xl font-semibold mb-6 text-center">
+                <h3 className="text-xl font-semibold mb-6 text-center text-gradient">
                   {group.title}
                 </h3>
                 {group.members.map((member) => (

@@ -106,14 +106,14 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "singh.thakur2226@gmail.com",
-      action: "mailto:singh.thakur2226@gmail.com",
+      content: "info@quantrabyte.com",
+      action: "mailto:info@quantrabyte.com",
     },
     {
       icon: Phone,
       title: "Call Us",
       content: "+91 7617294185",
-      action: "tel:+91 9039661302",
+      action: "tel:+91 7617294185",
     },
     {
       icon: MapPin,
