@@ -1,147 +1,141 @@
 import { useState } from "react";
-import { ExternalLink, Github, X } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Globe, Sparkles } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import project1 from "@/assets/project1.jpg";
-import project2 from "@/assets/capitalshop.jpg";
-import project3 from "@/assets/mobileapp.png";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface Project {
   id: number;
   title: string;
   category: string;
   description: string;
-  image: string;
+  domain: string;
+  status: string;
+  previewGradient: string;
   technologies: string[];
   features: string[];
-  github?: string;
   demo?: string;
 }
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: "LeadSource GPT",
+    category: "AI Systems",
+    description:
+      "AI-powered lead intelligence for scoring, qualification, and outreach automation across modern B2B funnels.",
+    domain: "leadsourcegpt.com",
+    status: "Live website",
+    previewGradient:
+      "linear-gradient(135deg, rgba(42, 212, 255, 0.95), rgba(91, 247, 221, 0.45))",
+    technologies: ["React", "TypeScript", "AI Workflows", "CRM Integrations"],
+    features: [
+      "AI lead scoring",
+      "Qualification flows",
+      "Outreach automation",
+      "Sales visibility dashboards",
+    ],
+    demo: "https://www.leadsourcegpt.com",
+  },
+  {
+    id: 2,
+    title: "Averentis",
+    category: "Web Platforms",
+    description:
+      "A high-trust digital presence built to present services clearly, sharpen positioning, and convert visitors into conversations.",
+    domain: "averentis.com",
+    status: "Live website",
+    previewGradient:
+      "linear-gradient(135deg, rgba(91, 247, 221, 0.92), rgba(51, 204, 140, 0.45))",
+    technologies: ["React", "TypeScript", "Motion UI", "SEO"],
+    features: [
+      "Clear service architecture",
+      "Modern visual storytelling",
+      "Conversion-first CTA flows",
+      "Responsive premium layout",
+    ],
+    demo: "https://www.averentis.com",
+  },
+  {
+    id: 3,
+    title: "Calarity",
+    category: "Web Platforms",
+    description:
+      "A clarity-first product presence with clean messaging, crisp hierarchy, and polished user exploration across devices.",
+    domain: "calarity.com",
+    status: "Live website",
+    previewGradient:
+      "linear-gradient(135deg, rgba(255, 188, 66, 0.92), rgba(42, 212, 255, 0.42))",
+    technologies: ["Responsive UI", "Product Marketing", "Performance", "UX Systems"],
+    features: [
+      "Brand-first presentation",
+      "Conversion-ready page structure",
+      "Fast responsive rendering",
+      "Premium interface polish",
+    ],
+    demo: "https://calarity.com",
+  },
+  {
+    id: 4,
+    title: "Smart Financial Dashboard",
+    category: "AI Systems",
+    description:
+      "A cloud-based financial analytics platform that turns complex inputs into predictive signals for faster decision-making.",
+    domain: "Private delivery",
+    status: "Case study",
+    previewGradient:
+      "linear-gradient(135deg, rgba(42, 212, 255, 0.88), rgba(15, 23, 42, 0.85))",
+    technologies: ["React", "TypeScript", "Python", "TensorFlow", "AWS"],
+    features: [
+      "Realtime financial pipelines",
+      "Predictive analytics",
+      "Custom ML model surfaces",
+      "Executive dashboards",
+    ],
+  },
+  {
+    id: 5,
+    title: "Capital Shop Commerce",
+    category: "Commerce",
+    description:
+      "A full-stack commerce experience combining modern storefront UX, payments, and operations visibility in one system.",
+    domain: "Private delivery",
+    status: "Case study",
+    previewGradient:
+      "linear-gradient(135deg, rgba(255, 188, 66, 0.9), rgba(248, 113, 113, 0.45))",
+    technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "Vercel"],
+    features: [
+      "Responsive storefront UI",
+      "Payment and checkout flows",
+      "Inventory administration",
+      "Operations dashboard",
+    ],
+  },
+  {
+    id: 6,
+    title: "Mobile Delivery Suite",
+    category: "Mobile",
+    description:
+      "A cross-platform mobile product for ordering, live status visibility, secure payments, and customer retention workflows.",
+    domain: "Private delivery",
+    status: "Case study",
+    previewGradient:
+      "linear-gradient(135deg, rgba(91, 247, 221, 0.92), rgba(14, 165, 233, 0.45))",
+    technologies: ["React Native", "Firebase", "Node.js", "MongoDB", "Stripe"],
+    features: [
+      "Realtime order states",
+      "Secure payment flows",
+      "Operations notifications",
+      "Cross-platform UI system",
+    ],
+  },
+];
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState("All");
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Smart Financial Dashboard (Cross-Platform)",
-      category: "AI/ML",
-      description:
-        "A cloud-based financial analytics platform that ingests multi-source financial data and provides predictive insights for small businesses.",
-      image: project1,
-      technologies: ["React", "TypeScript", "Python", "TensorFlow", "AWS"],
-      features: [
-        "Real-time data processing",
-        "Predictive analytics",
-        "Custom ML models",
-        "Interactive visualizations",
-      ],
-      github: "https://github.com/QuantraByte/ai-dashboard",
-      demo: "https://demo.QuantraByte.com/ai-dashboard",
-    },
-    {
-      id: 2,
-      title: "E-Commerce Platform",
-      category: "Web Development",
-      description:
-        "Full-stack e-commerce solution with modern UI/UX and integrated payment processing.",
-      image: project2,
-      technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "Vercel"],
-      features: [
-        "Responsive design",
-        "Payment integration",
-        "Inventory management",
-        "Admin dashboard",
-      ],
-      github: "https://github.com/QuantraByte/ecommerce-platform",
-      demo: "https://demo.QuantraByte.com/ecommerce",
-    },
-    {
-      id: 3,
-      title: "Food Delivery App",
-      category: "Mobile Apps",
-      description:
-        "Cross-platform financial application with biometric authentication and real-time transactions.",
-      image: project3,
-      technologies: [
-        "React Native",
-        "Firebase",
-        "Node.js",
-        "MongoDB",
-        "Stripe",
-      ],
-      features: [
-        "Biometric authentication",
-        "Real-time transactions",
-        "Investment tracking",
-        "Security features",
-      ],
-      github: "https://github.com/QuantraByte/fintech-app",
-      demo: "https://demo.QuantraByte.com/fintech-app",
-    },
-    // {
-    //   id: 4,
-    //   title: "Cloud Infrastructure",
-    //   category: "Cloud Integration",
-    //   description:
-    //     "Scalable microservices architecture deployed on AWS with automated CI/CD pipeline.",
-    //   image: project1,
-    //   technologies: ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins"],
-    //   features: [
-    //     "Auto-scaling",
-    //     "Load balancing",
-    //     "Monitoring & logging",
-    //     "Zero-downtime deployment",
-    //   ],
-    //   github: "https://github.com/QuantraByte/cloud-infrastructure",
-    // },
-    // {
-    //   id: 5,
-    //   title: "Data Pipeline Platform",
-    //   category: "AI/ML",
-    //   description:
-    //     "Automated data processing pipeline with real-time analytics and machine learning integration.",
-    //   image: project2,
-    //   technologies: [
-    //     "Python",
-    //     "Apache Airflow",
-    //     "Apache Kafka",
-    //     "PostgreSQL",
-    //     "Redis",
-    //   ],
-    //   features: [
-    //     "Real-time processing",
-    //     "Data validation",
-    //     "Automated workflows",
-    //     "Monitoring dashboard",
-    //   ],
-    //   github: "https://github.com/QuantraByte/data-pipeline",
-    // },
-    // {
-    //   id: 6,
-    //   title: "Healthcare Portal",
-    //   category: "Web Development",
-    //   description:
-    //     "HIPAA-compliant patient management system with telemedicine capabilities.",
-    //   image: project3,
-    //   technologies: ["React", "Node.js", "PostgreSQL", "WebRTC", "AWS"],
-    //   features: [
-    //     "HIPAA compliance",
-    //     "Video consultations",
-    //     "Patient records",
-    //     "Appointment scheduling",
-    //   ],
-    //   demo: "https://demo.QuantraByte.com/healthcare",
-    // },
-  ];
-
-  const categories = [
-    "All",
-    "AI/ML",
-    "Web Development",
-    "Mobile Apps",
-    "Cloud Integration",
-  ];
+  const categories = ["All", ...new Set(projects.map((project) => project.category))];
 
   const filteredProjects =
     filter === "All"
@@ -149,101 +143,120 @@ const Portfolio = () => {
       : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="portfolio" className="py-20 lg:py-32 section-gradient">
+    <section id="portfolio" className="py-20 sm:py-24 lg:py-32">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 fade-in-up">
-              Our <span className="text-gradient">Portfolio</span>
+          <div className="text-center mb-14">
+            <div className="section-kicker mx-auto fade-in-up">
+              <Sparkles className="h-4 w-4" />
+              Selected projects
+            </div>
+            <h2 className="mt-6 text-3xl font-semibold text-white fade-in-up sm:text-4xl md:text-6xl">
+              Live launches, premium interfaces, and product systems that convert.
             </h2>
             <p
-              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto fade-in-up"
-              style={{ animationDelay: "0.2s" }}
+              className="section-copy mx-auto mt-5 max-w-3xl fade-in-up"
+              style={{ animationDelay: "0.12s" }}
             >
-              Discover our latest projects and see how we've helped businesses
-              transform their ideas into successful digital solutions.
+              The showcase now includes the requested live websites alongside
+              private delivery work to reflect a broader, more current project mix.
             </p>
           </div>
 
-          {/* Filter Buttons */}
           <div
-            className="flex flex-wrap justify-center gap-4 mb-12 fade-in-up"
+            className="mb-12 flex flex-wrap justify-center gap-3 fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
             {categories.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setFilter(category)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                className={cn(
+                  "rounded-full border px-5 py-3 text-sm font-medium transition-all duration-300",
                   filter === category
-                    ? "quantum-gradient text-white shadow-quantum"
-                    : "bg-card hover:bg-accent text-foreground hover:text-accent-foreground border border-border"
-                }`}
+                    ? "border-primary/30 bg-primary/10 text-white shadow-quantum"
+                    : "border-white/10 bg-white/5 text-white/70 hover:border-white/20 hover:bg-white/10 hover:text-white",
+                )}
               >
                 {category}
               </button>
             ))}
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                className="group cursor-pointer fade-in-up"
+                className="group fade-in-up"
                 style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-                onClick={() => setSelectedProject(project)}
               >
-                <div className="bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-quantum scale-on-hover">
-                  {/* Image */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <ExternalLink className="w-5 h-5 text-white" />
+                <div
+                  className="section-shell elevated-hover h-full cursor-pointer rounded-[24px] p-4 sm:rounded-[30px] sm:p-5"
+                  onClick={() => setSelectedProject(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
+                >
+                  <div
+                    className="surface-grid relative overflow-hidden rounded-[22px] border border-white/10 p-4 sm:rounded-[26px] sm:p-5"
+                    style={{ background: project.previewGradient }}
+                  >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_35%),linear-gradient(180deg,rgba(7,17,29,0.05),rgba(7,17,29,0.5))]" />
+                    <div className="relative flex min-h-[15rem] flex-col justify-between">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="badge-chip bg-white/12 text-white/85">
+                          {project.status}
+                        </span>
+                        <span className="mono-label max-w-[8.5rem] break-all text-right text-white/60 sm:max-w-none sm:break-normal">
+                          {project.domain}
+                        </span>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-medium px-3 py-1 quantum-gradient text-white rounded-full">
-                        {project.category}
-                      </span>
-                    </div>
+                      <div>
+                        <p className="mono-label text-white/55">Launch module</p>
+                        <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                          {project.title}
+                        </h3>
+                      </div>
 
-                    <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies
-                        .slice(0, 3)
-                        .map((tech, techIndex) => (
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.slice(0, 3).map((tech) => (
                           <span
-                            key={techIndex}
-                            className="text-xs px-2 py-1 bg-accent text-accent-foreground rounded"
+                            key={`${project.id}-${tech}`}
+                            className="rounded-full border border-white/12 bg-[#07111d]/36 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-white/80 backdrop-blur-md"
                           >
                             {tech}
                           </span>
                         ))}
-                      {project.technologies.length > 3 && (
-                        <span className="text-xs px-2 py-1 bg-accent text-accent-foreground rounded">
-                          +{project.technologies.length - 3} more
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="badge-chip">{project.category}</span>
+                      <ArrowUpRight className="h-5 w-5 text-white/55 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+
+                    <p className="mt-4 text-sm leading-7 text-white/68">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70"
+                        >
+                          {tech}
                         </span>
-                      )}
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -251,98 +264,104 @@ const Portfolio = () => {
             ))}
           </div>
 
-          {/* Project Modal */}
           <Dialog
             open={!!selectedProject}
-            onOpenChange={() => setSelectedProject(null)}
+            onOpenChange={(open) => {
+              if (!open) {
+                setSelectedProject(null);
+              }
+            }}
           >
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto rounded-[28px] border border-white/10 bg-[#07111d]/95 p-0 text-white shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:rounded-[32px]">
               {selectedProject && (
-                <div className="space-y-6">
-                  {/* Header */}
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="text-2xl font-bold mb-2">
+                <div className="overflow-hidden rounded-[28px] sm:rounded-[32px]">
+                  <div
+                    className="surface-grid relative p-6 sm:p-8 md:p-10"
+                    style={{ background: selectedProject.previewGradient }}
+                  >
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,29,0.08),rgba(7,17,29,0.74)),radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_28%)]" />
+                    <div className="relative">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="badge-chip bg-white/12 text-white/80">
+                          {selectedProject.status}
+                        </span>
+                        <span className="mono-label text-white/60">
+                          {selectedProject.domain}
+                        </span>
+                      </div>
+                      <h3 className="mt-5 max-w-3xl text-3xl font-semibold sm:text-4xl">
                         {selectedProject.title}
                       </h3>
-                      <span className="text-sm font-medium px-3 py-1 quantum-gradient text-white rounded-full">
-                        {selectedProject.category}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className="p-2 hover:bg-accent rounded-lg transition-colors"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-
-                  {/* Image */}
-                  <div className="rounded-xl overflow-hidden">
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="w-full h-64 object-cover"
-                    />
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed">
-                    {selectedProject.description}
-                  </p>
-
-                  {/* Features */}
-                  <div>
-                    <h4 className="font-semibold mb-3">Key Features</h4>
-                    <div className="grid sm:grid-cols-2 gap-2">
-                      {selectedProject.features.map((feature, index) => (
-                        <div key={index} className="flex items-center text-sm">
-                          <div className="w-1.5 h-1.5 quantum-gradient rounded-full mr-3 flex-shrink-0" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Technologies */}
-                  <div>
-                    <h4 className="font-semibold mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech, index) => (
-                        <span
-                          key={index}
-                          className="text-sm px-3 py-1 bg-accent text-accent-foreground rounded-lg"
-                        >
-                          {tech}
+                      <p className="mt-4 max-w-2xl text-sm leading-7 text-white/72">
+                        {selectedProject.description}
+                      </p>
+                      <div className="mt-6">
+                        <span className="badge-chip bg-white/12 text-white/80">
+                          {selectedProject.category}
                         </span>
-                      ))}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-4 pt-4">
-                    {selectedProject.github && (
-                      <a
-                        href={selectedProject.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 border border-border rounded-lg hover:bg-accent transition-colors"
+                  <div className="p-6 sm:p-8 md:p-10">
+                    <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr]">
+                      <div>
+                        <h4 className="text-lg font-semibold">Project highlights</h4>
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                          {selectedProject.features.map((feature) => (
+                            <div
+                              key={feature}
+                              className="rounded-[22px] border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/72"
+                            >
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-lg font-semibold">Technology layer</h4>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {selectedProject.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/72"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-8 flex flex-wrap gap-4">
+                      {selectedProject.demo ? (
+                        <Button
+                          asChild
+                        className="w-full rounded-full border border-primary/20 bg-[linear-gradient(135deg,#5bf7dd_0%,#2ad4ff_55%,#33cc8c_100%)] px-6 text-slate-950 sm:w-auto"
+                        >
+                          <a
+                            href={selectedProject.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Globe className="h-4 w-4" />
+                            Visit website
+                          </a>
+                        </Button>
+                      ) : null}
+
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="w-full rounded-full border-white/10 bg-white/5 px-6 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                       >
-                        <Github className="w-4 h-4 mr-2" />
-                        View Code
-                      </a>
-                    )}
-                    {selectedProject.demo && (
-                      <a
-                        href={selectedProject.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 quantum-gradient text-white rounded-lg hover:quantum-gradient-hover transition-all"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </a>
-                    )}
+                        <a href="#contact" onClick={() => setSelectedProject(null)}>
+                          <ExternalLink className="h-4 w-4" />
+                          Start something similar
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}

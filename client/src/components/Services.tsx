@@ -1,185 +1,246 @@
 import {
-  Code2,
+  AppWindow,
+  ArrowRight,
   Brain,
+  CandlestickChart,
   Cloud,
-  Smartphone,
+  Code2,
   Database,
   Shield,
+  Smartphone,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 const Services = () => {
   const services = [
     {
-      icon: Code2,
-      title: "Web Development",
+      icon: Brain,
+      title: "Agentic AI, GenAI & Chatbots",
       description:
-        "Modern, responsive websites and web applications built with cutting-edge technologies.",
+        "High-priority AI systems built for automation, support, lead capture, workflow execution, and knowledge access.",
+      features: [
+        "Agentic AI workflows and autonomous task systems",
+        "GenAI copilots, assistants, and internal knowledge tools",
+        "Customer support chatbots and sales chatbots",
+        "RAG pipelines, prompt systems, and API integrations",
+      ],
+      accent:
+        "linear-gradient(135deg, rgba(91, 247, 221, 0.95), rgba(31, 182, 127, 0.55))",
+    },
+
+    {
+      icon: Code2,
+      title: "Web Applications",
+      description:
+        "Custom web products with strong UX, scale-ready frontend systems, and clean engineering foundations.",
       features: [
         "Single Page Applications (SPA)",
         "Progressive Web Apps (PWA)",
-        "E-commerce & Marketplace Platforms",
-        "Custom Content Management Systems (CMS)",
+        "Custom dashboards and portal systems",
+        "Modern frontend architecture and responsive UI",
       ],
-      color: "from-blue-500 to-blue-600",
+      accent:
+        "linear-gradient(135deg, rgba(56, 189, 248, 0.95), rgba(14, 165, 233, 0.55))",
     },
-    {
-      icon: Brain,
-      title: "AI/ML Solutions",
-      description:
-        "Intelligent systems that learn, adapt, and provide valuable insights for your business.",
-      features: [
-        "Predictive Analytics & Forecasting",
-        "Natural Language Processing (Chatbots, Text Analysis)",
-        "Computer Vision & Image Recognition",
-        "Recommendation Engines & Personalization",
-      ],
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Integration",
-      description:
-        "Scalable cloud infrastructure and seamless integration with leading cloud platforms.",
-      features: [
-        "AWS / Azure / GCP Deployment & Migration",
-        "Serverless Architecture & Functions",
-        "Microservices Design & API Integration",
-        "Cloud Monitoring & Cost Optimization",
-      ],
-      color: "from-green-500 to-green-600",
-    },
+
     {
       icon: Smartphone,
       title: "Mobile Applications",
       description:
         "Native and cross-platform mobile apps that deliver exceptional user experiences.",
       features: [
-        "iOS & Android Native Development",
-        "React Native & Flutter Cross-Platform Apps",
-        "Mobile UI/UX Design & Prototyping",
-        "App Store & Play Store Deployment & Optimization",
+        "iOS and Android native development",
+        "React Native and Flutter builds",
+        "Mobile UI and UX design systems",
+        "App store deployment and optimization",
       ],
-      color: "from-orange-500 to-orange-600",
+      accent:
+        "linear-gradient(135deg, rgba(74, 222, 128, 0.95), rgba(14, 116, 144, 0.55))",
     },
+
+    {
+      icon: Code2,
+      title: "Commerce & CMS Platforms",
+      description:
+        "Fast delivery for business websites, stores, and content-driven platforms across the ecosystems clients ask for most.",
+      features: [
+        "Shopify storefronts and custom Shopify experiences",
+        "WordPress business sites and content platforms",
+        "Magento commerce builds and custom extensions",
+        "Squarespace websites and conversion-focused landing pages",
+      ],
+      accent:
+        "linear-gradient(135deg, rgba(36, 198, 255, 0.95), rgba(0, 117, 255, 0.55))",
+    },
+
+    {
+      icon: Cloud,
+      title: "Cloud Integration",
+      description:
+        "Scalable cloud infrastructure and seamless integration with leading cloud platforms.",
+      features: [
+        "AWS, Azure, and GCP migration",
+        "Serverless architecture and functions",
+        "Microservices design and API integration",
+        "Cloud monitoring and cost optimization",
+      ],
+      accent:
+        "linear-gradient(135deg, rgba(79, 70, 229, 0.95), rgba(45, 212, 191, 0.5))",
+    },
+
+    {
+      icon: AppWindow,
+      title: "Desktop Applications",
+      description:
+        "Cross-platform desktop software with modern UI, local capability, and production-ready release flows.",
+      features: [
+        "Electron.js desktop applications",
+        "Windows, macOS, and Linux packaging",
+        "Admin dashboards, internal tools, and SaaS companions",
+        "Realtime sync, offline workflows, and system integrations",
+      ],
+      accent:
+        "linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(249, 115, 22, 0.55))",
+    },
+
+    {
+      icon: CandlestickChart,
+      title: "Blockchain & DeFi Solutions",
+      description:
+        "Custom blockchain products for trading, automation, wallet experiences, and high-speed DeFi execution flows.",
+      features: [
+        "Centralized and decentralized crypto exchange platforms",
+        "Flashloan arbitrage bot architecture and automation",
+        "Wallet integration, swaps, and on-chain transaction flows",
+        "Smart contract dashboards, analytics, and admin tooling",
+      ],
+      accent:
+        "linear-gradient(135deg, rgba(168, 85, 247, 0.95), rgba(42, 212, 255, 0.5))",
+    },
+
+    {
+      icon: Shield,
+      title: "Cybersecurity",
+      description:
+        "Comprehensive security solutions to protect digital assets and user data.",
+      features: [
+        "Security audits and risk assessments",
+        "Penetration testing and scans",
+        "Compliance and privacy support",
+        "Realtime threat detection and response",
+      ],
+      accent:
+        "linear-gradient(135deg, rgba(248, 113, 113, 0.95), rgba(225, 29, 72, 0.55))",
+    },
+
     {
       icon: Database,
       title: "IT Outsourcing & Staff Augmentation",
       description:
         "Flexible engagement models to extend your team and accelerate project delivery.",
       features: [
-        "Dedicated Development Teams",
-        "Project-Based End-to-End Development",
-        "Remote IT Support & Maintenance",
-        "Specialized Talent Hiring (Developers, Designers, QA)",
+        "Dedicated development teams",
+        "Project-based end-to-end delivery",
+        "Remote IT support and maintenance",
+        "Specialized talent across dev, design, and QA",
       ],
-      color: "from-cyan-500 to-cyan-600",
-    },
-    {
-      icon: Shield,
-      title: "Cybersecurity",
-      description:
-        "Comprehensive security solutions to protect your digital assets and user data.",
-      features: [
-        "Security Audits & Risk Assessments",
-        "Penetration Testing & Vulnerability Scanning",
-        "Compliance & Data Privacy (GDPR, HIPAA, ISO)",
-        "Real-Time Threat Detection & Incident Response",
-      ],
-      color: "from-red-500 to-red-600",
+      accent:
+        "linear-gradient(135deg, rgba(56, 189, 248, 0.95), rgba(14, 165, 233, 0.55))",
     },
   ];
+
   return (
-    <section id="services" className="py-20 lg:py-32 bg-background">
+    <section id="services" className="py-20 sm:py-24 lg:py-32">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 fade-in-up">
-              Our <span className="text-gradient">Services</span>
+          <div className="text-center mb-12">
+            <div className="section-kicker mx-auto fade-in-up">
+              <Brain className="h-4 w-4" />
+              Service stack
+            </div>
+            <h2 className="mt-6 text-3xl font-semibold text-white fade-in-up sm:text-4xl md:text-6xl">
+              Design, build, automate, and scale from one product partner.
             </h2>
             <p
-              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto fade-in-up"
-              style={{ animationDelay: "0.2s" }}
+              className="section-copy mx-auto mt-5 max-w-3xl fade-in-up"
+              style={{ animationDelay: "0.12s" }}
             >
-              Comprehensive technology solutions tailored to your business
-              needs. From concept to deployment, we've got you covered.
+              Current priority areas include agentic AI, GenAI assistants,
+              chatbots, Shopify and WordPress builds, Squarespace and Magento
+              delivery, Electron.js desktop apps, and scalable product systems.
             </p>
           </div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
-              <Card
-                key={index}
-                className="group cursor-pointer border-border hover:border-primary/50 transition-all duration-300 hover:shadow-quantum scale-on-hover fade-in-up"
+              <article
+                key={service.title}
+                className="section-shell elevated-hover group rounded-[24px] p-5 fade-in-up sm:rounded-[30px] sm:p-6"
                 style={{ animationDelay: `${0.4 + index * 0.1}s` }}
               >
-                <CardHeader className="pb-4">
-                  <div className="w-12 h-12 quantum-gradient rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
-                    <service.icon className="w-6 h-6 text-white" />
+                <div className="flex items-start justify-between gap-4">
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 shadow-glow sm:h-14 sm:w-14"
+                    style={{ background: service.accent }}
+                  >
+                    <service.icon className="h-6 w-6 text-slate-950" />
                   </div>
-                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li
-                        key={featureIndex}
-                        className="flex items-center text-sm text-muted-foreground"
-                      >
-                        <div className="w-1.5 h-1.5 quantum-gradient rounded-full mr-3 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  <span className="mono-label text-white/35">0{index + 1}</span>
+                </div>
 
-                  {/* Hover Effect */}
-                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="h-1 w-full bg-gradient-to-r quantum-gradient rounded-full" />
-                  </div>
-                </CardContent>
-              </Card>
+                <h3 className="mt-6 text-xl font-semibold text-white sm:text-2xl">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-white/65">
+                  {service.description}
+                </p>
+
+                <ul className="mt-6 space-y-3">
+                  {service.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-sm text-white/72"
+                    >
+                      <div className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary">
+                  <span>Built for modern teams</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+              </article>
             ))}
           </div>
 
-          {/* Call to Action */}
-          {/* <div className="text-center mt-16">
-            <div
-              className="bg-card rounded-2xl p-8 md:p-12 shadow-quantum fade-in-up"
-              style={{ animationDelay: "1.2s" }}
-            >
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Ready to Get Started?
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Let's discuss how our services can help transform your business.
-                Our team of experts is ready to bring your vision to life.
+          <div className="section-shell mt-8 flex flex-col gap-6 rounded-[28px] p-6 sm:p-8 md:flex-row md:items-center md:justify-between md:rounded-[32px] fade-in-up">
+            <div>
+              <p className="mono-label text-primary/80">
+                Custom engagement model
               </p>
-              <button
-                onClick={() => {
-                  const element = document.querySelector("#contact");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="inline-flex items-center px-8 py-4 quantum-gradient hover:quantum-gradient-hover text-white font-semibold rounded-lg shadow-quantum glow-on-hover transition-all duration-300"
-              >
-                Start Your Project
-              </button>
+              <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                Need a lean product squad or a full delivery partner?
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/65">
+                We can plug into a single sprint, own a complete launch, or act
+                as the design and engineering arm behind your product roadmap.
+              </p>
             </div>
-          </div> */}
+            <button
+              type="button"
+              onClick={() => {
+                const element = document.querySelector("#contact");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary/20 bg-[linear-gradient(135deg,#5bf7dd_0%,#2ad4ff_55%,#33cc8c_100%)] px-6 py-4 font-semibold text-slate-950 transition-transform duration-300 hover:scale-[1.02] md:w-auto"
+            >
+              Discuss your roadmap
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
-import { Linkedin, Github, Twitter, Mail, ArrowUp } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowUp, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { useEffect, useState } from "react";
 import Qblogo from "../assets/QBlogo.png";
 
 const Footer = () => {
@@ -29,18 +29,18 @@ const Footer = () => {
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#services", label: "Services" },
-    { href: "#portfolio", label: "Portfolio" },
-    { href: "#team", label: "Team" },
+    { href: "#portfolio", label: "Projects" },
+    { href: "#team", label: "Founder" },
     { href: "#contact", label: "Contact" },
   ];
 
   const serviceLinks = [
-    "Web Development",
-    "AI/ML Solutions",
-    "Cloud Integration",
-    "Mobile Applications",
-    "Data Engineering",
-    "Cybersecurity",
+    "Agentic AI & GenAI",
+    "Chatbots & Assistants",
+    "Shopify / Magento / WordPress",
+    "Squarespace Websites",
+    "Electron Desktop Apps",
+    "Blockchain & DeFi",
   ];
 
   const socialLinks = [
@@ -51,7 +51,7 @@ const Footer = () => {
     },
     {
       icon: Github,
-      href: "https://github.com/QuantraByte",
+      href: "https://github.com/quantraByte0203",
       label: "GitHub",
     },
     {
@@ -67,39 +67,141 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground text-background relative">
-      {/* Back to Top Button */}
+    <footer className="relative pb-10 pt-6">
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 quantum-gradient rounded-full flex items-center justify-center shadow-quantum hover:shadow-glow transition-all duration-300 z-50 scale-on-hover"
+          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-[linear-gradient(135deg,#5bf7dd_0%,#2ad4ff_55%,#33cc8c_100%)] text-slate-950 shadow-quantum transition-transform duration-300 hover:scale-105"
           aria-label="Back to top"
         >
-          <ArrowUp className="w-5 h-5 text-white" />
+          <ArrowUp className="h-5 w-5" />
         </button>
       )}
 
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 pt-16 pb-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                {/* <span className="text-white font-bold text-sm">♣</span> */}
-                <img src={Qblogo} alt="QB" />
-              </div>
-              <span className="text-xl font-bold">QuantraByte</span>
+      <div className="container mx-auto px-4">
+        <div className="section-shell overflow-hidden rounded-[28px] px-5 py-6 sm:px-6 sm:py-8 md:rounded-[34px] md:px-8 lg:px-10">
+          <div className="mb-10 flex flex-col gap-6 border-b border-white/10 pb-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="mono-label text-primary/80">Build something sharper</p>
+              <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
+                Premium product UI, reliable delivery, and direct collaboration.
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-white/65">
+                QuantraByte builds the interfaces, systems, and launch momentum
+                modern businesses need to stand out.
+              </p>
             </div>
-            <p className="text-background/70 mb-6 leading-relaxed">
-              Transforming quantum-level ideas into practical, byte-sized
-              solutions. Your partner in digital innovation and technological
-              excellence.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
+            <button
+              type="button"
+              onClick={() => scrollToSection("#contact")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-primary/20 bg-[linear-gradient(135deg,#5bf7dd_0%,#2ad4ff_55%,#33cc8c_100%)] px-6 py-4 font-semibold text-slate-950 transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
+            >
+              Start a conversation
+            </button>
+          </div>
+
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <div className="lg:col-span-1">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.96),rgba(120,250,229,0.88)_36%,rgba(10,21,36,0.96)_100%)] p-0 shadow-[0_12px_32px_rgba(91,247,221,0.18)] ring-1 ring-white/10">
+                  <img
+                    src={Qblogo}
+                    alt="QuantraByte"
+                    className="h-full w-full scale-[1.38] object-cover brightness-110 contrast-125"
+                  />
+                </div>
+                <div>
+                  <p className="mono-label text-primary/70">AI-native studio</p>
+                  <p className="text-xl font-semibold text-white">QuantraByte</p>
+                </div>
+              </div>
+              <p className="leading-7 text-white/65">
+                AI, SaaS, web, and mobile product delivery with a stronger visual
+                edge and practical engineering under the hood.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target={social.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      social.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/65 transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-white"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-white">Navigation</h3>
+              <ul className="mt-5 space-y-3">
+                {navigationLinks.map((link) => (
+                  <li key={link.href}>
+                    <button
+                      type="button"
+                      onClick={() => scrollToSection(link.href)}
+                      className="text-left text-white/65 transition-colors duration-300 hover:text-white"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-white">Capabilities</h3>
+              <ul className="mt-5 space-y-3">
+                {serviceLinks.map((service) => (
+                  <li key={service} className="break-words text-white/65">
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-white">Contact</h3>
+              <div className="mt-5 space-y-4">
+                <div>
+                  <p className="mono-label text-white/45">Email</p>
+                  <a
+                    href="mailto:info@quantrabyte.com"
+                    className="mt-2 inline-block text-white transition-colors duration-300 hover:text-primary"
+                  >
+                    info@quantrabyte.com
+                  </a>
+                </div>
+                <div>
+                  <p className="mono-label text-white/45">Phone</p>
+                  <a
+                    href="tel:+917617294185"
+                    className="mt-2 inline-block text-white transition-colors duration-300 hover:text-primary"
+                  >
+                    +91 7617294185
+                  </a>
+                </div>
+                <div>
+                  <p className="mono-label text-white/45">Base</p>
+                  <p className="mt-2 text-white">Vijay Nagar, Indore, MP</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/55 md:flex-row md:items-center md:justify-between">
+            <p>&copy; {new Date().getFullYear()} QuantraByte. All rights reserved.</p>
+            <div className="flex flex-wrap gap-5">
+              {socialLinks.map((social) => (
                 <a
-                  key={index}
+                  key={social.label}
                   href={social.href}
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={
@@ -107,127 +209,15 @@ const Footer = () => {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="w-10 h-10 bg-background/10 hover:bg-primary rounded-lg flex items-center justify-center transition-colors duration-300 group"
-                  aria-label={social.label}
+                  className="transition-colors duration-300 hover:text-white"
                 >
-                  <social.icon className="w-5 h-5 text-background/70 group-hover:text-white transition-colors" />
+                  {social.label}
                 </a>
               ))}
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {navigationLinks.map((link, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-background/70 hover:text-white transition-colors duration-300 text-left"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
-            <ul className="space-y-3">
-              {serviceLinks.map((service, index) => (
-                <li key={index}>
-                  <span className="text-background/70 hover:text-white transition-colors duration-300 cursor-pointer">
-                    {service}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Contact</h3>
-            <div className="space-y-4">
-              <div>
-                <p className="text-background/70 mb-1">Email</p>
-                <a
-                  href="mailto:info@quantrabyte.com"
-                  className="text-white hover:text-primary transition-colors duration-300"
-                >
-                  info@quantrabyte.com
-                </a>
-              </div>
-              <div>
-                <p className="text-background/70 mb-1">Phone</p>
-                <a
-                  href="tel:+91 7617294185, 8770022687"
-                  className="text-white hover:text-primary transition-colors duration-300"
-                >
-                  +91 7617294185
-                </a>
-              </div>
-              <div>
-                <p className="text-background/70 mb-1">Location</p>
-                <p className="text-white">Vijay Nagar Indore, MP</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Newsletter Signup */}
-        <div className="border-t border-background/20 pt-8 mb-8">
-          <div className="max-w-md mx-auto text-center">
-            <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
-            <p className="text-background/70 mb-6">
-              Subscribe to our newsletter for the latest tech insights and
-              updates.
-            </p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-background/10 border border-background/20 rounded-l-lg text-white placeholder-background/50 focus:outline-none focus:border-primary"
-              />
-              <button className="px-6 py-3 quantum-gradient rounded-r-lg hover:quantum-gradient-hover transition-all font-semibold">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-background/70 text-sm mb-4 md:mb-0">
-            <p>&copy; 2025 QuantraByte. All rights reserved.</p>
-          </div>
-          <div className="flex space-x-6 text-sm">
-            <a
-              href="#"
-              className="text-background/70 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-background/70 hover:text-white transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="#"
-              className="text-background/70 hover:text-white transition-colors"
-            >
-              Cookie Policy
-            </a>
           </div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-1 quantum-gradient"></div>
     </footer>
   );
 };
