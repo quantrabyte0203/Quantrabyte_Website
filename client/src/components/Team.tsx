@@ -35,8 +35,7 @@ const Team = () => {
               className="section-copy mx-auto mt-5 max-w-2xl fade-in-up"
               style={{ animationDelay: "0.12s" }}
             >
-              As requested, this section now keeps only the first founder image
-              and removes the other three member profiles completely.
+             
             </p>
           </div>
 
