@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import Icon from "@/components/Icon";
 
 const heroSignals = [
   "Agentic AI",
@@ -7,36 +7,68 @@ const heroSignals = [
   "Electron apps",
 ];
 
-const Hero = () => {
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+const heroMetrics = [
+  { value: "100+", label: "Products shipped" },
+  { value: "24h", label: "Response window" },
+  { value: "8+", label: "Years building" },
+];
 
-  const scrollToPortfolio = () => {
-    const element = document.querySelector("#portfolio");
+const tickerItems = [
+  "Generative AI",
+  "AI Agents",
+  "RAG Systems",
+  "SaaS Platforms",
+  "Mobile Apps",
+  "Commerce",
+  "Cloud Infrastructure",
+  "Design Systems",
+];
+
+const Hero = () => {
+  const scrollTo = (selector: string) => {
+    const element = document.querySelector(selector);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <section id="home" className="relative overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-44">
-      <div className="absolute inset-0 hero-grid-bg opacity-60" />
-      <div className="absolute inset-0 hero-radial" />
+    <section
+      id="home"
+      className="relative overflow-hidden pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-44"
+    >
+      {/* Layered futuristic backdrop */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 hero-grid-bg opacity-70" />
+        <div className="absolute inset-0 hero-radial" />
+        <div
+          className="hero-aurora animate-drift h-[26rem] w-[26rem] bg-lime/25"
+          style={{ top: "-6rem", left: "-4rem" }}
+        />
+        <div
+          className="hero-aurora animate-drift h-[30rem] w-[30rem] bg-cyan/20"
+          style={{ top: "2rem", right: "-6rem", animationDelay: "-6s" }}
+        />
+        <div
+          className="hero-aurora animate-drift h-[24rem] w-[24rem] bg-violet/20"
+          style={{ bottom: "-8rem", left: "35%", animationDelay: "-11s" }}
+        />
+        <div className="hero-perspective-grid" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-paper to-transparent" />
+      </div>
 
       <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
           <div className="max-w-2xl">
             <div className="section-kicker fade-in-up">
               <span className="accent-dot" />
               AI-native product engineering
             </div>
 
-            <h1 className="mt-6 text-[clamp(2.5rem,6vw,4.25rem)] font-semibold leading-[1.02] tracking-tight text-ink fade-in-up sm:mt-7">
-              We build AI-powered digital products and modern software experiences.
+            <h1 className="mt-7 text-[clamp(2.4rem,6vw,4.4rem)] font-bold leading-[1.03] tracking-tight text-ink fade-in-up">
+              We build{" "}
+              <span className="text-gradient">AI-powered</span> digital products
+              and next-gen software experiences.
             </h1>
 
             <p
@@ -49,23 +81,23 @@ const Hero = () => {
             </p>
 
             <div
-              className="mt-8 flex flex-col gap-3 sm:flex-row fade-in-up"
+              className="mt-9 flex flex-col gap-3 sm:flex-row fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
               <button
-                onClick={scrollToContact}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition-all duration-300 hover:bg-ink/90"
+                onClick={() => scrollTo("#contact")}
+                className="btn-primary group px-7 py-3.5 text-sm"
               >
                 Start a Project
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
 
               <button
-                onClick={scrollToPortfolio}
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-medium text-ink transition-all duration-300 hover:border-ink/20 hover:bg-surface"
+                onClick={() => scrollTo("#portfolio")}
+                className="btn-ghost group px-7 py-3.5 text-sm"
               >
                 View Our Work
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
 
@@ -75,18 +107,53 @@ const Hero = () => {
             >
               {heroSignals.map((signal) => (
                 <span key={signal} className="badge-chip">
+                  <span className="h-1.5 w-1.5 rounded-full bg-lime" />
                   {signal}
                 </span>
               ))}
             </div>
+
+            <div
+              className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-7 fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              {heroMetrics.map((metric) => (
+                <div key={metric.label}>
+                  <div className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                    {metric.value}
+                  </div>
+                  <div className="mt-1 text-xs leading-5 text-ink-soft sm:text-sm">
+                    {metric.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Abstract product visual */}
+          {/* Holographic console */}
           <div
             className="relative fade-in-right hidden lg:block"
             style={{ animationDelay: "0.25s" }}
           >
             <HeroVisual />
+          </div>
+        </div>
+
+        {/* Capability ticker */}
+        <div
+          className="ticker-mask mt-16 overflow-hidden border-y border-line py-4 fade-in-up sm:mt-20"
+          style={{ animationDelay: "0.5s" }}
+        >
+          <div className="ticker-track">
+            {[...tickerItems, ...tickerItems].map((item, index) => (
+              <span
+                key={`${item}-${index}`}
+                className="flex shrink-0 items-center gap-3 text-sm font-medium uppercase tracking-[0.2em] text-ink-soft"
+              >
+                <span className="h-1 w-1 rounded-full bg-cyan" />
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -95,104 +162,152 @@ const Hero = () => {
 };
 
 const HeroVisual = () => (
-  <div className="relative aspect-square w-full max-w-md ml-auto">
-    {/* Outer ring */}
-    <div className="absolute inset-0 rounded-[2rem] border border-line bg-white shadow-card" />
+  <div className="relative ml-auto aspect-square w-full max-w-md">
+    {/* Orbital rings */}
+    <div className="orbit-ring animate-spin-slow inset-[-6%]" />
+    <div className="orbit-ring animate-spin-reverse inset-[6%] border-lime/20" />
 
-    {/* Grid background inside card */}
-    <div className="absolute inset-0 rounded-[2rem] surface-grid overflow-hidden" />
+    {/* Core glow */}
+    <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/10 blur-3xl" />
 
-    {/* Radial accent */}
-    <div className="absolute top-0 right-0 h-48 w-48 rounded-full bg-lime/8 blur-3xl" />
+    {/* Main console */}
+    <div className="hud-panel animate-float-slow absolute inset-[10%] rounded-[1.75rem] p-6">
+      <div className="hud-scanline rounded-[1.75rem]" />
 
-    {/* UI fragments */}
-    <div className="absolute inset-0 p-8">
-      {/* Top bar - mock browser */}
-      <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2">
-        <div className="flex gap-1.5">
-          <div className="h-2 w-2 rounded-full bg-line" />
-          <div className="h-2 w-2 rounded-full bg-line" />
-          <div className="h-2 w-2 rounded-full bg-line" />
+      {/* Console header */}
+      <div className="relative flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-lime/40 bg-lime/10">
+            <Icon name="memory" size={15} className="text-lime" />
+          </span>
+          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-ink-soft">
+            Agent core
+          </span>
         </div>
-        <div className="ml-2 h-4 flex-1 rounded-md bg-paper" />
+        <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
+          <span className="text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-lime">
+            Live
+          </span>
+        </div>
       </div>
 
-      {/* Main panel */}
-      <div className="mt-4 grid grid-cols-3 gap-3">
-        {/* Sidebar nav */}
-        <div className="space-y-2 rounded-xl border border-line bg-white p-3">
-          <div className="h-2 w-full rounded bg-ink/8" />
-          <div className="h-2 w-3/4 rounded bg-line" />
-          <div className="h-2 w-5/6 rounded bg-line" />
-          <div className="mt-3 h-2 w-2/3 rounded bg-lime/40" />
-          <div className="h-2 w-1/2 rounded bg-line" />
-        </div>
-
-        {/* Content area */}
-        <div className="col-span-2 space-y-3">
-          <div className="rounded-xl border border-line bg-white p-4">
+      {/* Pipeline nodes */}
+      <div className="relative mt-6 space-y-2.5">
+        {[
+          { label: "Intent parsed", value: "100%", width: "100%" },
+          { label: "Context retrieved", value: "94%", width: "94%" },
+          { label: "Actions executed", value: "78%", width: "78%" },
+        ].map((row, index) => (
+          <div
+            key={row.label}
+            className="rounded-xl border border-line bg-surface/70 px-3.5 py-2.5"
+          >
             <div className="flex items-center justify-between">
-              <div className="h-3 w-20 rounded bg-ink/12" />
-              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-lime/15">
-                <Sparkles className="h-3 w-3 text-ink" />
-              </div>
+              <span className="text-xs font-medium text-ink">{row.label}</span>
+              <span className="text-[0.65rem] font-semibold text-cyan">
+                {row.value}
+              </span>
             </div>
-            <div className="mt-3 space-y-2">
-              <div className="h-2 w-full rounded bg-line" />
-              <div className="h-2 w-4/5 rounded bg-line" />
-            </div>
-            <div className="mt-4 flex gap-2">
-              <div className="h-6 w-16 rounded-md bg-ink" />
-              <div className="h-6 w-14 rounded-md border border-line bg-surface" />
-            </div>
-          </div>
-
-          {/* Stat cards */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-line bg-white p-3">
-              <div className="h-2 w-12 rounded bg-line" />
-              <div className="mt-2 h-5 w-16 rounded bg-ink/15" />
-              <div className="mt-2 h-1.5 w-full rounded-full bg-surface">
-                <div className="h-1.5 w-2/3 rounded-full bg-lime" />
-              </div>
-            </div>
-            <div className="rounded-xl border border-line bg-white p-3">
-              <div className="h-2 w-10 rounded bg-line" />
-              <div className="mt-2 h-5 w-14 rounded bg-ink/15" />
-              <div className="mt-2 flex items-end gap-1 h-6">
-                <div className="w-2 bg-lime/30 rounded-sm" style={{ height: "40%" }} />
-                <div className="w-2 bg-lime/50 rounded-sm" style={{ height: "65%" }} />
-                <div className="w-2 bg-lime/70 rounded-sm" style={{ height: "50%" }} />
-                <div className="w-2 bg-lime rounded-sm" style={{ height: "85%" }} />
-                <div className="w-2 bg-lime/60 rounded-sm" style={{ height: "70%" }} />
-              </div>
+            <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-line">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-lime to-cyan"
+                style={{
+                  width: row.width,
+                  animation: `fadeInLeft 1s ${0.4 + index * 0.2}s both`,
+                }}
+              />
             </div>
           </div>
-        </div>
+        ))}
       </div>
 
-      {/* Node connections at bottom */}
-      <div className="absolute bottom-8 left-8 right-8">
-        <div className="flex items-center justify-between rounded-xl border border-line bg-surface px-4 py-3">
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-lime" />
-            <div className="h-2 w-20 rounded bg-ink/12" />
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="h-1.5 w-1.5 rounded-full bg-line" />
-            <div className="h-1.5 w-1.5 rounded-full bg-line" />
-            <div className="h-1.5 w-1.5 rounded-full bg-lime" />
-          </div>
+      {/* Neural link graph */}
+      <div className="relative mt-4 overflow-hidden rounded-xl border border-line bg-surface/60 p-3">
+        <svg viewBox="0 0 240 78" className="h-[4.5rem] w-full" role="presentation">
+          <defs>
+            <linearGradient id="heroLink" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#B8E63E" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#45E6FF" stopOpacity="0.9" />
+            </linearGradient>
+          </defs>
+          {[
+            "M14 39 C 60 8, 84 8, 120 39",
+            "M14 39 C 60 70, 84 70, 120 39",
+            "M120 39 C 160 12, 190 12, 226 39",
+            "M120 39 C 160 66, 190 66, 226 39",
+          ].map((d) => (
+            <path
+              key={d}
+              d={d}
+              fill="none"
+              stroke="url(#heroLink)"
+              strokeWidth="1.2"
+              strokeDasharray="4 6"
+              opacity="0.75"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                from="60"
+                to="0"
+                dur="2.4s"
+                repeatCount="indefinite"
+              />
+            </path>
+          ))}
+          {[
+            [14, 39, 4.5],
+            [120, 39, 7],
+            [226, 39, 4.5],
+          ].map(([cx, cy, r]) => (
+            <circle
+              key={`${cx}-${cy}`}
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill="#05070F"
+              stroke="#B8E63E"
+              strokeWidth="1.4"
+            />
+          ))}
+        </svg>
+      </div>
+
+      {/* Output row */}
+      <div className="relative mt-4 flex items-center justify-between rounded-xl border border-lime/25 bg-lime/[0.07] px-3.5 py-3">
+        <div className="flex items-center gap-2">
+          <Icon name="auto_awesome" size={15} className="text-lime" />
+          <span className="text-xs font-medium text-ink">Shipping to production</span>
         </div>
+        <Icon name="bolt" size={15} fill className="text-cyan" />
       </div>
     </div>
 
-    {/* Floating label */}
-    <div className="absolute -bottom-4 -left-4 rounded-xl border border-line bg-white px-4 py-2.5 shadow-hover">
-      <div className="mono-label text-ink">System live</div>
+    {/* Floating status chips */}
+    <div className="hud-panel animate-float absolute -left-6 top-16 rounded-xl px-3.5 py-2.5">
+      <div className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+        Uptime
+      </div>
+      <div className="mt-1 text-sm font-bold text-lime">99.98%</div>
+    </div>
+
+    <div
+      className="hud-panel animate-float absolute -right-4 bottom-20 rounded-xl px-3.5 py-2.5"
+      style={{ animationDelay: "-3s" }}
+    >
+      <div className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+        Latency
+      </div>
+      <div className="mt-1 text-sm font-bold text-cyan">42ms</div>
+    </div>
+
+    <div className="hud-panel absolute -bottom-2 left-2 rounded-xl px-4 py-2.5">
+      <div className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+        System live
+      </div>
       <div className="mt-1 flex items-center gap-1.5">
-        <div className="h-1.5 w-1.5 rounded-full bg-lime animate-pulse" />
-        <span className="text-xs font-medium text-ink-soft">All systems operational</span>
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
+        <span className="text-xs font-medium text-ink">All systems operational</span>
       </div>
     </div>
   </div>

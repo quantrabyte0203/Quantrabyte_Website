@@ -1,4 +1,4 @@
-import { BadgeCheck, Rocket } from "lucide-react";
+import Icon from "@/components/Icon";
 import founderImage from "@/assets/AnshulD.png";
 
 const founder = {
@@ -49,7 +49,7 @@ const Team = () => {
                 alt={founder.name}
                 className="h-full min-h-[22rem] w-full object-cover object-top sm:min-h-[26rem] lg:min-h-[30rem]"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-paper/95 via-paper/40 to-transparent p-6">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-paper via-paper/80 to-transparent p-6 pt-16">
                 <h3 className="text-xl font-semibold text-ink">{founder.name}</h3>
                 <p className="mt-1 text-sm text-ink-soft">{founder.position}</p>
               </div>
@@ -78,7 +78,7 @@ const Team = () => {
             <div className="grid gap-6 sm:grid-cols-2">
               <div className="section-shell rounded-2xl p-6">
                 <div className="flex items-center gap-2.5">
-                  <BadgeCheck className="h-5 w-5 text-ink" />
+                  <Icon name="verified" size={22} className="text-lime" />
                   <h4 className="text-base font-semibold text-ink">Core expertise</h4>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -92,7 +92,7 @@ const Team = () => {
 
               <div className="section-shell rounded-2xl p-6">
                 <div className="flex items-center gap-2.5">
-                  <Rocket className="h-5 w-5 text-ink" />
+                  <Icon name="rocket_launch" size={22} className="text-cyan" />
                   <h4 className="text-base font-semibold text-ink">Working principle</h4>
                 </div>
                 <p className="mt-4 text-sm leading-6 text-ink-soft">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import Icon from "@/components/Icon";
 import { cn } from "@/lib/utils";
 import Qblogo from "../assets/QBlogo.png";
 
@@ -43,7 +43,7 @@ const Header = () => {
           className={cn(
             "flex items-center justify-between gap-3 rounded-2xl border px-4 py-2.5 transition-all duration-300",
             isScrolled
-              ? "border-line bg-paper/85 shadow-soft backdrop-blur-xl"
+              ? "border-line bg-paper/80 shadow-card backdrop-blur-2xl"
               : "border-transparent bg-transparent",
           )}
         >
@@ -52,11 +52,11 @@ const Header = () => {
             onClick={() => scrollToSection("#home")}
             className="flex items-center gap-2.5 transition-transform duration-300 hover:scale-[1.01]"
           >
-            <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-line bg-white">
+            <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface">
               <img
                 src={Qblogo}
                 alt="QuantraByte"
-                className="h-full w-full scale-[1.35] object-cover"
+                className="h-full w-full scale-[1.35] object-cover "
               />
             </span>
             <span className="text-lg font-semibold tracking-tight text-ink">
@@ -70,7 +70,7 @@ const Header = () => {
                 key={item.href}
                 type="button"
                 onClick={() => scrollToSection(item.href)}
-                className="rounded-lg px-3.5 py-2 text-sm font-medium text-ink-soft transition-colors duration-200 hover:text-ink"
+                className="rounded-lg px-3.5 py-2 text-sm font-medium text-ink-soft transition-colors duration-200 hover:bg-surface hover:text-ink"
               >
                 {item.label}
               </button>
@@ -81,25 +81,25 @@ const Header = () => {
             <button
               type="button"
               onClick={() => scrollToSection("#contact")}
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-all duration-300 hover:bg-ink/90"
+              className="btn-primary group px-5 py-2.5 text-sm"
             >
               Start a Project
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-0.5" />
             </button>
           </div>
 
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-white text-ink transition-colors duration-200 hover:bg-surface lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-surface text-ink transition-colors duration-200 hover:border-lime/40 hover:text-lime lg:hidden"
             onClick={() => setIsMobileMenuOpen((open) => !open)}
             aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <Icon name={isMobileMenuOpen ? "close" : "menu"} size={22} />
           </button>
         </div>
 
         {isMobileMenuOpen && (
-          <div className="mt-2 rounded-2xl border border-line bg-paper p-4 shadow-card backdrop-blur-xl lg:hidden">
+          <div className="mt-2 rounded-2xl border border-line bg-paper/95 p-4 shadow-card backdrop-blur-2xl lg:hidden">
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <button
@@ -114,10 +114,10 @@ const Header = () => {
               <button
                 type="button"
                 onClick={() => scrollToSection("#contact")}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-5 py-3 font-medium text-paper"
+                className="btn-primary mt-2 px-5 py-3 !rounded-xl"
               >
                 Start a Project
-                <ArrowRight className="h-4 w-4" />
+                <Icon name="arrow_forward" size={18} />
               </button>
             </nav>
           </div>

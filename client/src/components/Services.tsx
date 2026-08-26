@@ -1,9 +1,9 @@
-import { ArrowRight, Brain, Code as Code2, Smartphone, Globe, Cloud, AppWindow, Database } from "lucide-react";
+import Icon from "@/components/Icon";
 
 const serviceGroups = [
   {
     title: "AI Products",
-    icon: Brain,
+    icon: "neurology",
     description: "AI as a real capability, not a label.",
     items: [
       "Generative AI",
@@ -16,7 +16,7 @@ const serviceGroups = [
   },
   {
     title: "Digital Products",
-    icon: Code2,
+    icon: "code_blocks",
     description: "Product engineering across every surface.",
     items: [
       "SaaS",
@@ -29,7 +29,7 @@ const serviceGroups = [
   },
   {
     title: "Commerce & Platforms",
-    icon: Globe,
+    icon: "language",
     description: "Fast delivery across the ecosystems clients ask for most.",
     items: [
       "Shopify",
@@ -44,22 +44,22 @@ const serviceGroups = [
 
 const additionalCapabilities = [
   {
-    icon: Smartphone,
+    icon: "smartphone",
     title: "Mobile Applications",
     description: "Native and cross-platform mobile apps with exceptional UX.",
   },
   {
-    icon: Cloud,
+    icon: "cloud",
     title: "Cloud Integration",
     description: "Scalable infrastructure, serverless, and API integration.",
   },
   {
-    icon: AppWindow,
+    icon: "web_asset",
     title: "Desktop Applications",
     description: "Electron.js apps, internal tools, and SaaS companions.",
   },
   {
-    icon: Database,
+    icon: "groups",
     title: "Staff Augmentation",
     description: "Dedicated teams and project-based end-to-end delivery.",
   },
@@ -101,8 +101,8 @@ const Services = () => {
               className="section-shell elevated-hover rounded-2xl p-6 sm:p-8 fade-in-up"
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-surface text-ink">
-                <group.icon className="h-5 w-5" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-lime/30 bg-lime/10 text-lime">
+                <Icon name={group.icon} size={22} />
               </div>
               <h3 className="mt-5 text-xl font-semibold text-ink">{group.title}</h3>
               <p className="mt-2 text-sm leading-6 text-ink-soft">{group.description}</p>
@@ -126,7 +126,7 @@ const Services = () => {
               className="surface-soft elevated-hover rounded-xl p-5 fade-in-up"
               style={{ animationDelay: `${0.4 + index * 0.08}s` }}
             >
-              <cap.icon className="h-5 w-5 text-ink-soft" />
+              <Icon name={cap.icon} size={22} className="text-cyan" />
               <h4 className="mt-4 text-sm font-semibold text-ink">{cap.title}</h4>
               <p className="mt-2 text-xs leading-5 text-ink-soft">{cap.description}</p>
             </div>
@@ -135,7 +135,7 @@ const Services = () => {
 
         {/* CTA bar */}
         <div
-          className="mt-8 flex flex-col gap-5 rounded-2xl border border-line bg-surface p-6 sm:p-8 md:flex-row md:items-center md:justify-between fade-in-up"
+          className="section-shell mt-8 flex flex-col gap-5 overflow-hidden rounded-2xl p-6 sm:p-8 md:flex-row md:items-center md:justify-between fade-in-up"
           style={{ animationDelay: "0.6s" }}
         >
           <div className="max-w-xl">
@@ -150,10 +150,10 @@ const Services = () => {
           <button
             type="button"
             onClick={scrollToContact}
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition-all duration-300 hover:bg-ink/90"
+            className="btn-primary group shrink-0 px-6 py-3.5 text-sm"
           >
             Discuss your roadmap
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
       </div>

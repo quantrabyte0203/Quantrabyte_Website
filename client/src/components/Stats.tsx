@@ -7,7 +7,7 @@ const stats = [
 
 const Stats = () => {
   return (
-    <section className="border-y border-line bg-surface/50 py-10 sm:py-12">
+    <section className="relative border-y border-line bg-surface/40 py-10 backdrop-blur-sm sm:py-12">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
           {stats.map((stat, index) => (
@@ -16,7 +16,7 @@ const Stats = () => {
               className="text-center fade-in-up sm:text-left"
               style={{ animationDelay: `${index * 0.08}s` }}
             >
-              <div className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              <div className="text-3xl font-bold tracking-tight text-ink text-glow sm:text-4xl">
                 {stat.number}
               </div>
               <div className="mt-1.5 text-sm text-ink-soft">{stat.label}</div>

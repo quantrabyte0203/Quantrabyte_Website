@@ -1,4 +1,5 @@
-import { ArrowUp, GitFork as Github, Link as Linkedin, Mail, Battery as Twitter } from "lucide-react";
+import Icon from "@/components/Icon";
+import BrandIcon from "@/components/BrandIcon";
 import { useEffect, useState } from "react";
 import Qblogo from "../assets/QBlogo.png";
 
@@ -41,21 +42,21 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: "https://linkedin.com/company/QuantraByte", label: "LinkedIn" },
-    { icon: Github, href: "https://github.com/quantraByte0203", label: "GitHub" },
-    { icon: Twitter, href: "https://twitter.com/QuantraByte", label: "Twitter" },
-    { icon: Mail, href: "mailto:info@quantrabyte.com", label: "Email" },
+    { brand: "linkedin", href: "https://linkedin.com/company/QuantraByte", label: "LinkedIn" },
+    { brand: "github", href: "https://github.com/quantraByte0203", label: "GitHub" },
+    { brand: "x", href: "https://twitter.com/QuantraByte", label: "X" },
+    { brand: "mail", href: "mailto:info@quantrabyte.com", label: "Email" },
   ];
 
   return (
-    <footer className="border-t border-line bg-surface/40 pb-10 pt-14">
+    <footer className="relative border-t border-line bg-surface/30 pb-10 pt-14 backdrop-blur-sm">
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink shadow-hover transition-all duration-300 hover:bg-surface"
+          className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-lime/40 bg-surface text-lime shadow-hover backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-lime hover:text-paper"
           aria-label="Back to top"
         >
-          <ArrowUp className="h-5 w-5" />
+          <Icon name="arrow_upward" size={22} />
         </button>
       )}
 
@@ -64,7 +65,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-5 flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-line bg-white">
+              <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface">
                 <img
                   src={Qblogo}
                   alt="QuantraByte"
@@ -90,10 +91,14 @@ const Footer = () => {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-white text-ink-soft transition-all duration-200 hover:border-ink/20 hover:text-ink"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-surface text-ink-soft transition-all duration-200 hover:-translate-y-0.5 hover:border-lime/50 hover:text-lime"
                   aria-label={social.label}
                 >
-                  <social.icon className="h-4 w-4" />
+                  {social.brand === "mail" ? (
+                    <Icon name="mail" size={18} />
+                  ) : (
+                    <BrandIcon name={social.brand} size={17} />
+                  )}
                 </a>
               ))}
             </div>
@@ -108,7 +113,7 @@ const Footer = () => {
                   <button
                     type="button"
                     onClick={() => scrollToSection(link.href)}
-                    className="text-left text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
+                    className="text-left text-sm text-ink-soft transition-colors duration-200 hover:text-lime"
                   >
                     {link.label}
                   </button>
@@ -137,7 +142,7 @@ const Footer = () => {
                 <p className="mono-label">Email</p>
                 <a
                   href="mailto:info@quantrabyte.com"
-                  className="mt-1 inline-block text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
+                  className="mt-1 inline-block text-sm text-ink-soft transition-colors duration-200 hover:text-lime"
                 >
                   info@quantrabyte.com
                 </a>
@@ -146,7 +151,7 @@ const Footer = () => {
                 <p className="mono-label">Phone</p>
                 <a
                   href="tel:+917617294185"
-                  className="mt-1 inline-block text-sm text-ink-soft transition-colors duration-200 hover:text-ink"
+                  className="mt-1 inline-block text-sm text-ink-soft transition-colors duration-200 hover:text-lime"
                 >
                   +91 7617294185
                 </a>
@@ -172,7 +177,7 @@ const Footer = () => {
                     ? "noopener noreferrer"
                     : undefined
                 }
-                className="transition-colors duration-200 hover:text-ink"
+                className="transition-colors duration-200 hover:text-lime"
               >
                 {social.label}
               </a>

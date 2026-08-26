@@ -1,4 +1,4 @@
-import { Layers as Layers3 } from "lucide-react";
+import Icon from "@/components/Icon";
 
 const differentiators = [
   {
@@ -35,7 +35,7 @@ const differentiators = [
 
 const About = () => {
   return (
-    <section id="about" className="border-y border-line bg-surface/40 py-20 sm:py-24 lg:py-32">
+    <section id="about" className="relative border-y border-line bg-surface/30 py-20 backdrop-blur-sm sm:py-24 lg:py-32">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <div className="section-kicker fade-in-up">
@@ -63,8 +63,8 @@ const About = () => {
               style={{ animationDelay: `${0.2 + index * 0.08}s` }}
             >
               <div className="flex items-center gap-2.5">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-line bg-surface">
-                  <Layers3 className="h-3.5 w-3.5 text-ink" />
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-cyan/30 bg-cyan/10">
+                  <Icon name="layers" size={16} className="text-cyan" />
                 </div>
                 <h3 className="text-base font-semibold text-ink">{item.title}</h3>
               </div>

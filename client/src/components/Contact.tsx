@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  ArrowUpRight,
-  Clock3,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-} from "lucide-react";
+import Icon from "@/components/Icon";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -109,19 +102,19 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: Mail,
+      icon: "mail",
       title: "Email Us",
       content: "info@quantrabyte.com",
       action: "mailto:info@quantrabyte.com",
     },
     {
-      icon: Phone,
+      icon: "call",
       title: "Call Us",
       content: "+91 7617294185",
       action: "tel:+917617294185",
     },
     {
-      icon: MapPin,
+      icon: "location_on",
       title: "Visit Us",
       content: "Vijay Nagar, Indore, 452010",
       action: "https://maps.google.com/?q=Vijay+Nagar+Indore+452010",
@@ -178,7 +171,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="John Doe"
                     required
-                    className="mt-2 h-11 rounded-lg border-line bg-surface px-4 text-ink placeholder:text-ink-soft/50 focus-visible:ring-lime"
+                    className="mt-2 h-11 rounded-lg border-line bg-surface/80 px-4 text-ink placeholder:text-ink-dim focus-visible:border-lime/50 focus-visible:ring-lime/40"
                   />
                 </div>
                 <div>
@@ -193,7 +186,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="john@example.com"
                     required
-                    className="mt-2 h-11 rounded-lg border-line bg-surface px-4 text-ink placeholder:text-ink-soft/50 focus-visible:ring-lime"
+                    className="mt-2 h-11 rounded-lg border-line bg-surface/80 px-4 text-ink placeholder:text-ink-dim focus-visible:border-lime/50 focus-visible:ring-lime/40"
                   />
                 </div>
               </div>
@@ -209,7 +202,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Project inquiry"
-                  className="mt-2 h-11 rounded-lg border-line bg-surface px-4 text-ink placeholder:text-ink-soft/50 focus-visible:ring-lime"
+                  className="mt-2 h-11 rounded-lg border-line bg-surface/80 px-4 text-ink placeholder:text-ink-dim focus-visible:border-lime/50 focus-visible:ring-lime/40"
                 />
               </div>
 
@@ -225,23 +218,23 @@ const Contact = () => {
                   placeholder="Tell us about your project..."
                   rows={6}
                   required
-                  className="mt-2 min-h-[10rem] resize-none rounded-lg border-line bg-surface px-4 py-3 text-ink placeholder:text-ink-soft/50 focus-visible:ring-lime"
+                  className="mt-2 min-h-[10rem] resize-none rounded-lg border-line bg-surface/80 px-4 py-3 text-ink placeholder:text-ink-dim focus-visible:border-lime/50 focus-visible:ring-lime/40"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-ink text-sm font-medium text-paper transition-all duration-300 hover:bg-ink/90 disabled:opacity-60"
+                className="btn-primary h-12 w-full text-sm disabled:pointer-events-none disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="mr-1 h-4 w-4 rounded-full border-2 border-paper/20 border-t-paper animate-spin" />
+                    <div className="mr-1 h-4 w-4 animate-spin rounded-full border-2 border-paper/25 border-t-paper" />
                     Sending...
                   </>
                 ) : (
                   <>
-                    <Send className="h-4 w-4" />
+                    <Icon name="send" size={18} />
                     Send Message
                   </>
                 )}
@@ -258,11 +251,11 @@ const Contact = () => {
                   href={info.action}
                   target={info.action.startsWith("http") ? "_blank" : undefined}
                   rel={info.action.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="section-shell elevated-hover block rounded-xl p-5"
+                  className="section-shell elevated-hover group block rounded-xl p-5"
                 >
                   <div className="flex items-start gap-4 sm:items-center">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-ink">
-                      <info.icon className="h-4.5 w-4.5" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-lime/30 bg-lime/10 text-lime">
+                      <Icon name={info.icon} size={20} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="mono-label">{info.title}</p>
@@ -270,7 +263,7 @@ const Contact = () => {
                         {info.content}
                       </p>
                     </div>
-                    <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-ink-soft" />
+                    <Icon name="arrow_outward" size={18} className="mt-0.5 text-ink-soft transition-colors duration-200 group-hover:text-lime" />
                   </div>
                 </a>
               ))}
@@ -278,7 +271,7 @@ const Contact = () => {
 
             <div className="section-shell rounded-xl p-5">
               <div className="flex items-center gap-2.5">
-                <Clock3 className="h-5 w-5 text-ink" />
+                <Icon name="schedule" size={22} className="text-cyan" />
                 <h3 className="text-base font-semibold text-ink">How we kick off</h3>
               </div>
               <div className="mt-4 space-y-3">
@@ -293,7 +286,7 @@ const Contact = () => {
 
             <div className="surface-soft rounded-xl p-5">
               <div className="flex items-center gap-2.5">
-                <MapPin className="h-5 w-5 text-ink" />
+                <Icon name="location_on" size={22} className="text-cyan" />
                 <h3 className="text-base font-semibold text-ink">Location</h3>
               </div>
               <p className="mt-3 text-sm leading-6 text-ink-soft">
@@ -304,10 +297,10 @@ const Contact = () => {
                 href="https://maps.google.com/?q=Vijay+Nagar+Indore+452010"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ink"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-lime transition-colors duration-200 hover:text-lime-bright"
               >
                 Open map
-                <ArrowUpRight className="h-3.5 w-3.5" />
+                <Icon name="arrow_outward" size={16} />
               </a>
             </div>
           </div>
