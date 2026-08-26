@@ -20,7 +20,7 @@ const founder = {
 
 const Team = () => {
   return (
-    <section id="team" className="py-20 sm:py-24 lg:py-32">
+    <section id="team" className="py-16 sm:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <div className="section-kicker fade-in-up">
@@ -40,7 +40,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           {/* Portrait */}
           <div className="section-shell overflow-hidden rounded-2xl fade-in-left">
             <div className="relative overflow-hidden rounded-2xl">

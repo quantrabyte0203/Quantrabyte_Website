@@ -127,7 +127,7 @@ const Portfolio = () => {
   const [lead, ...rest] = filteredProjects;
 
   return (
-    <section id="portfolio" className="relative py-20 sm:py-24 lg:py-32">
+    <section id="portfolio" className="relative py-16 sm:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">

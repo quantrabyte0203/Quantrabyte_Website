@@ -128,7 +128,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 sm:py-24 lg:py-32">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <div className="section-kicker fade-in-up">
@@ -147,7 +147,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
           {/* Form */}
           <div className="section-shell rounded-2xl p-6 fade-in-left sm:p-8 lg:p-10">
             <p className="mono-label">Project enquiry</p>

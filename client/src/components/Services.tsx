@@ -74,7 +74,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-20 sm:py-24 lg:py-32">
+    <section id="services" className="py-16 sm:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <div className="section-kicker fade-in-up">
@@ -94,7 +94,7 @@ const Services = () => {
         </div>
 
         {/* Primary capability groups */}
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {serviceGroups.map((group, index) => (
             <div
               key={group.title}

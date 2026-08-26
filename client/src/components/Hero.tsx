@@ -24,6 +24,16 @@ const tickerItems = [
   "Design Systems",
 ];
 
+/** How a QuantraByte engagement actually runs, shown as a live console. */
+const pipeline = [
+  { label: "Discovery & scoping", state: "done", note: "Week 1" },
+  { label: "Design system", state: "done", note: "Week 2" },
+  { label: "Engineering", state: "active", note: "72%" },
+  { label: "Launch & scale", state: "queued", note: "Queued" },
+] as const;
+
+const stack = ["React", "TypeScript", "Node", "AI"];
+
 const Hero = () => {
   const scrollTo = (selector: string) => {
     const element = document.querySelector(selector);
@@ -35,7 +45,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-44"
+      className="relative overflow-hidden pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36"
     >
       {/* Layered futuristic backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -58,21 +68,20 @@ const Hero = () => {
       </div>
 
       <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
-          <div className="max-w-2xl">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-14">
+          <div>
             <div className="section-kicker fade-in-up">
               <span className="accent-dot" />
               AI-native product engineering
             </div>
 
-            <h1 className="mt-7 text-[clamp(2.4rem,6vw,4.4rem)] font-bold leading-[1.03] tracking-tight text-ink fade-in-up">
-              We build{" "}
-              <span className="text-gradient">AI-powered</span> digital products
-              and next-gen software experiences.
+            <h1 className="mt-6 max-w-[19ch] text-[clamp(2.15rem,4.2vw,3.5rem)] font-bold leading-[1.06] tracking-tight text-ink fade-in-up">
+              We build <span className="text-gradient">AI-powered</span> digital
+              products and next-gen software.
             </h1>
 
             <p
-              className="section-copy mt-6 max-w-xl fade-in-up"
+              className="section-copy mt-5 max-w-xl fade-in-up"
               style={{ animationDelay: "0.1s" }}
             >
               QuantraByte blends agentic AI, GenAI assistants, premium interface
@@ -81,7 +90,7 @@ const Hero = () => {
             </p>
 
             <div
-              className="mt-9 flex flex-col gap-3 sm:flex-row fade-in-up"
+              className="mt-7 flex flex-col gap-3 sm:flex-row fade-in-up"
               style={{ animationDelay: "0.2s" }}
             >
               <button
@@ -89,7 +98,11 @@ const Hero = () => {
                 className="btn-primary group px-7 py-3.5 text-sm"
               >
                 Start a Project
-                <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <Icon
+                  name="arrow_forward"
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </button>
 
               <button
@@ -97,12 +110,16 @@ const Hero = () => {
                 className="btn-ghost group px-7 py-3.5 text-sm"
               >
                 View Our Work
-                <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <Icon
+                  name="arrow_forward"
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </button>
             </div>
 
             <div
-              className="mt-8 flex flex-wrap gap-2 fade-in-up"
+              className="mt-7 flex flex-wrap gap-2 fade-in-up"
               style={{ animationDelay: "0.3s" }}
             >
               {heroSignals.map((signal) => (
@@ -114,7 +131,7 @@ const Hero = () => {
             </div>
 
             <div
-              className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-7 fade-in-up"
+              className="mt-8 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-6 fade-in-up"
               style={{ animationDelay: "0.4s" }}
             >
               {heroMetrics.map((metric) => (
@@ -130,7 +147,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Holographic console */}
+          {/* Delivery console */}
           <div
             className="relative fade-in-right hidden lg:block"
             style={{ animationDelay: "0.25s" }}
@@ -141,7 +158,7 @@ const Hero = () => {
 
         {/* Capability ticker */}
         <div
-          className="ticker-mask mt-16 overflow-hidden border-y border-line py-4 fade-in-up sm:mt-20"
+          className="ticker-mask mt-12 overflow-hidden border-y border-line py-4 fade-in-up sm:mt-14"
           style={{ animationDelay: "0.5s" }}
         >
           <div className="ticker-track">
@@ -161,153 +178,129 @@ const Hero = () => {
   );
 };
 
+const stateStyles = {
+  done: {
+    icon: "check_circle",
+    dot: "border-lime/60 bg-lime/20 text-lime",
+    note: "text-lime",
+  },
+  active: {
+    icon: "autorenew",
+    dot: "border-cyan/60 bg-cyan/20 text-cyan",
+    note: "text-cyan",
+  },
+  queued: {
+    icon: "schedule",
+    dot: "border-line bg-surface text-ink-dim",
+    note: "text-ink-dim",
+  },
+} as const;
+
 const HeroVisual = () => (
-  <div className="relative ml-auto aspect-square w-full max-w-md">
+  <div className="relative ml-auto aspect-square w-full max-w-[26rem]">
     {/* Orbital rings */}
-    <div className="orbit-ring animate-spin-slow inset-[-6%]" />
-    <div className="orbit-ring animate-spin-reverse inset-[6%] border-lime/20" />
+    <div className="orbit-ring animate-spin-slow inset-[-5%]" />
+    <div className="orbit-ring animate-spin-reverse inset-[7%] border-lime/20" />
 
     {/* Core glow */}
-    <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/10 blur-3xl" />
+    <div className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/10 blur-3xl" />
 
-    {/* Main console */}
-    <div className="hud-panel animate-float-slow absolute inset-[10%] rounded-[1.75rem] p-6">
-      <div className="hud-scanline rounded-[1.75rem]" />
+    {/* Console */}
+    <div className="hud-panel animate-float-slow absolute inset-[8%] flex flex-col rounded-[1.6rem] p-5">
+      <div className="hud-scanline rounded-[1.6rem]" />
 
-      {/* Console header */}
+      {/* Header */}
       <div className="relative flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-lime/40 bg-lime/10">
-            <Icon name="memory" size={15} className="text-lime" />
+            <Icon name="rocket_launch" size={15} className="text-lime" />
           </span>
-          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-ink-soft">
-            Agent core
+          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">
+            Delivery pipeline
           </span>
         </div>
         <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
-          <span className="text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-lime">
+          <span className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-lime">
             Live
           </span>
         </div>
       </div>
 
-      {/* Pipeline nodes */}
-      <div className="relative mt-6 space-y-2.5">
-        {[
-          { label: "Intent parsed", value: "100%", width: "100%" },
-          { label: "Context retrieved", value: "94%", width: "94%" },
-          { label: "Actions executed", value: "78%", width: "78%" },
-        ].map((row, index) => (
-          <div
-            key={row.label}
-            className="rounded-xl border border-line bg-surface/70 px-3.5 py-2.5"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-ink">{row.label}</span>
-              <span className="text-[0.65rem] font-semibold text-cyan">
-                {row.value}
-              </span>
-            </div>
-            <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-line">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-lime to-cyan"
-                style={{
-                  width: row.width,
-                  animation: `fadeInLeft 1s ${0.4 + index * 0.2}s both`,
-                }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Pipeline stepper */}
+      <div className="relative mt-5 flex-1">
+        {/* connector rail */}
+        <span className="absolute bottom-8 left-[13px] top-6 w-px bg-gradient-to-b from-lime/50 via-cyan/40 to-line" />
 
-      {/* Neural link graph */}
-      <div className="relative mt-4 overflow-hidden rounded-xl border border-line bg-surface/60 p-3">
-        <svg viewBox="0 0 240 78" className="h-[4.5rem] w-full" role="presentation">
-          <defs>
-            <linearGradient id="heroLink" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#B8E63E" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#45E6FF" stopOpacity="0.9" />
-            </linearGradient>
-          </defs>
-          {[
-            "M14 39 C 60 8, 84 8, 120 39",
-            "M14 39 C 60 70, 84 70, 120 39",
-            "M120 39 C 160 12, 190 12, 226 39",
-            "M120 39 C 160 66, 190 66, 226 39",
-          ].map((d) => (
-            <path
-              key={d}
-              d={d}
-              fill="none"
-              stroke="url(#heroLink)"
-              strokeWidth="1.2"
-              strokeDasharray="4 6"
-              opacity="0.75"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="60"
-                to="0"
-                dur="2.4s"
-                repeatCount="indefinite"
-              />
-            </path>
-          ))}
-          {[
-            [14, 39, 4.5],
-            [120, 39, 7],
-            [226, 39, 4.5],
-          ].map(([cx, cy, r]) => (
-            <circle
-              key={`${cx}-${cy}`}
-              cx={cx}
-              cy={cy}
-              r={r}
-              fill="#05070F"
-              stroke="#B8E63E"
-              strokeWidth="1.4"
-            />
-          ))}
-        </svg>
-      </div>
-
-      {/* Output row */}
-      <div className="relative mt-4 flex items-center justify-between rounded-xl border border-lime/25 bg-lime/[0.07] px-3.5 py-3">
-        <div className="flex items-center gap-2">
-          <Icon name="auto_awesome" size={15} className="text-lime" />
-          <span className="text-xs font-medium text-ink">Shipping to production</span>
+        <div className="space-y-2.5">
+          {pipeline.map((step) => {
+            const s = stateStyles[step.state];
+            return (
+              <div key={step.label} className="relative flex items-center gap-3">
+                <span
+                  className={`relative z-10 flex h-[27px] w-[27px] shrink-0 items-center justify-center rounded-full border ${s.dot}`}
+                >
+                  <Icon name={s.icon} size={14} />
+                </span>
+                <div className="flex min-w-0 flex-1 items-center justify-between gap-2 rounded-lg border border-line bg-surface/60 px-3 py-2">
+                  <span className="truncate text-xs font-medium text-ink">
+                    {step.label}
+                  </span>
+                  <span className={`shrink-0 text-[0.65rem] font-semibold ${s.note}`}>
+                    {step.note}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <Icon name="bolt" size={15} fill className="text-cyan" />
+
+        {/* build progress */}
+        <div className="ml-[39px] mt-2.5 h-1 overflow-hidden rounded-full bg-line">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-lime to-cyan"
+            style={{ width: "72%", animation: "fadeInLeft 1s 0.5s both" }}
+          />
+        </div>
+      </div>
+
+      {/* Stack */}
+      <div className="relative mt-4 border-t border-line pt-3">
+        <div className="flex flex-wrap items-center gap-1.5">
+          {stack.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-md border border-line bg-surface/70 px-2 py-1 text-[0.65rem] font-medium text-ink-soft"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
 
     {/* Floating status chips */}
-    <div className="hud-panel animate-float absolute -left-6 top-16 rounded-xl px-3.5 py-2.5">
-      <div className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
-        Uptime
+    <div className="hud-panel animate-float absolute -left-5 top-14 rounded-xl px-3.5 py-2.5">
+      <div className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+        Live products
       </div>
-      <div className="mt-1 text-sm font-bold text-lime">99.98%</div>
+      <div className="mt-1 text-sm font-bold text-lime">7</div>
     </div>
 
     <div
-      className="hud-panel animate-float absolute -right-4 bottom-20 rounded-xl px-3.5 py-2.5"
+      className="hud-panel animate-float absolute -right-4 bottom-16 rounded-xl px-3.5 py-2.5"
       style={{ animationDelay: "-3s" }}
     >
-      <div className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
-        Latency
+      <div className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
+        First reply
       </div>
-      <div className="mt-1 text-sm font-bold text-cyan">42ms</div>
+      <div className="mt-1 text-sm font-bold text-cyan">24h</div>
     </div>
 
-    <div className="hud-panel absolute -bottom-2 left-2 rounded-xl px-4 py-2.5">
-      <div className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
-        System live
-      </div>
-      <div className="mt-1 flex items-center gap-1.5">
+    <div className="hud-panel absolute -bottom-3 left-3 rounded-xl px-4 py-2.5">
+      <div className="flex items-center gap-2">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
-        <span className="text-xs font-medium text-ink">All systems operational</span>
+        <span className="text-xs font-medium text-ink">Accepting new projects</span>
       </div>
     </div>
   </div>

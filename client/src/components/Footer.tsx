@@ -1,7 +1,7 @@
 import Icon from "@/components/Icon";
 import BrandIcon from "@/components/BrandIcon";
 import { useEffect, useState } from "react";
-import Qblogo from "../assets/QBlogo.png";
+import Qblogo from "../assets/QBlogo-mark.png";
 
 const Footer = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -65,11 +65,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-5 flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface">
+              <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-lime/25 bg-lime/[0.08] p-1.5 shadow-[0_0_18px_hsl(76_77%_57%_/_0.12)]">
                 <img
                   src={Qblogo}
                   alt="QuantraByte"
-                  className="h-full w-full scale-[1.35] object-cover"
+                  className="h-full w-full object-contain"
                 />
               </span>
               <span className="text-lg font-semibold tracking-tight text-ink">

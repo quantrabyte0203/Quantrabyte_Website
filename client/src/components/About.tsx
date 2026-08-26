@@ -35,7 +35,7 @@ const differentiators = [
 
 const About = () => {
   return (
-    <section id="about" className="relative border-y border-line bg-surface/30 py-20 backdrop-blur-sm sm:py-24 lg:py-32">
+    <section id="about" className="relative border-y border-line bg-surface/30 py-16 backdrop-blur-sm sm:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <div className="section-kicker fade-in-up">
@@ -55,7 +55,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {differentiators.map((item, index) => (
             <div
               key={item.title}

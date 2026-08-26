@@ -9,9 +9,9 @@ const CTA = () => {
   };
 
   return (
-    <section className="py-20 sm:py-24 lg:py-32">
+    <section className="py-16 sm:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="section-shell relative overflow-hidden rounded-3xl px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24 fade-in-up">
+        <div className="section-shell relative overflow-hidden rounded-3xl px-6 py-14 text-center sm:px-12 sm:py-16 lg:py-20 fade-in-up">
           {/* Subtle grid */}
           <div
             className="absolute inset-0 opacity-[0.09]"
@@ -39,7 +39,7 @@ const CTA = () => {
             <button
               type="button"
               onClick={scrollToContact}
-              className="btn-primary group mt-10 px-8 py-4 text-sm"
+              className="btn-primary group mt-8 px-8 py-4 text-sm"
             >
               Start a Project
               <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
