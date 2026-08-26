@@ -1,375 +1,267 @@
 import { useState } from "react";
-import { ArrowUpRight, ExternalLink, Globe, Sparkles } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Project {
   id: number;
   title: string;
   category: string;
+  filterCategory: string;
   description: string;
-  domain: string;
   status: string;
-  previewGradient: string;
   technologies: string[];
-  features: string[];
-  demo?: string;
+  link: string;
+  featured?: boolean;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "LeadSource GPT",
-    category: "AI Systems",
+    title: "Averentis",
+    category: "Web",
+    filterCategory: "Web",
     description:
-      "AI-powered lead intelligence for scoring, qualification, and outreach automation across modern B2B funnels.",
-    domain: "leadsourcegpt.com",
+      "A high-trust digital presence built to present services clearly, sharpen positioning, and convert visitors into conversations.",
     status: "Live website",
-    previewGradient:
-      "linear-gradient(135deg, rgba(42, 212, 255, 0.95), rgba(91, 247, 221, 0.45))",
-    technologies: ["React", "TypeScript", "AI Workflows", "CRM Integrations"],
-    features: [
-      "AI lead scoring",
-      "Qualification flows",
-      "Outreach automation",
-      "Sales visibility dashboards",
-    ],
-    demo: "https://www.leadsourcegpt.com",
+    technologies: ["React", "TypeScript", "Motion UI", "SEO"],
+    link: "[ADD AVERENTIS URL]",
+    featured: true,
   },
   {
     id: 2,
-    title: "Averentis",
-    category: "Web Platforms",
+    title: "MilesCopilot",
+    category: "AI",
+    filterCategory: "AI",
     description:
-      "A high-trust digital presence built to present services clearly, sharpen positioning, and convert visitors into conversations.",
-    domain: "averentis.com",
+      "An AI-powered copilot experience designed to assist users with intelligent automation and contextual guidance.",
     status: "Live website",
-    previewGradient:
-      "linear-gradient(135deg, rgba(91, 247, 221, 0.92), rgba(51, 204, 140, 0.45))",
-    technologies: ["React", "TypeScript", "Motion UI", "SEO"],
-    features: [
-      "Clear service architecture",
-      "Modern visual storytelling",
-      "Conversion-first CTA flows",
-      "Responsive premium layout",
-    ],
-    demo: "https://www.averentis.com",
+    technologies: ["AI", "React", "TypeScript"],
+    link: "[ADD MILESCOPILOT URL]",
+    featured: true,
   },
   {
     id: 3,
-    title: "Calarity",
-    category: "Web Platforms",
+    title: "Slaapable AI",
+    category: "AI",
+    filterCategory: "AI",
     description:
-      "A clarity-first product presence with clean messaging, crisp hierarchy, and polished user exploration across devices.",
-    domain: "calarity.com",
+      "An AI-driven product focused on sleep and wellness, combining intelligent insights with a calm, premium interface.",
     status: "Live website",
-    previewGradient:
-      "linear-gradient(135deg, rgba(255, 188, 66, 0.92), rgba(42, 212, 255, 0.42))",
-    technologies: ["Responsive UI", "Product Marketing", "Performance", "UX Systems"],
-    features: [
-      "Brand-first presentation",
-      "Conversion-ready page structure",
-      "Fast responsive rendering",
-      "Premium interface polish",
-    ],
-    demo: "https://calarity.com",
+    technologies: ["AI", "Product Design", "Web"],
+    link: "[ADD SLAAPABLE AI URL]",
+    featured: true,
   },
   {
     id: 4,
-    title: "Smart Financial Dashboard",
-    category: "AI Systems",
+    title: "Clarity — Website",
+    category: "Web",
+    filterCategory: "Web",
     description:
-      "A cloud-based financial analytics platform that turns complex inputs into predictive signals for faster decision-making.",
-    domain: "Private delivery",
-    status: "Case study",
-    previewGradient:
-      "linear-gradient(135deg, rgba(42, 212, 255, 0.88), rgba(15, 23, 42, 0.85))",
-    technologies: ["React", "TypeScript", "Python", "TensorFlow", "AWS"],
-    features: [
-      "Realtime financial pipelines",
-      "Predictive analytics",
-      "Custom ML model surfaces",
-      "Executive dashboards",
-    ],
+      "A clarity-first product presence with clean messaging, crisp hierarchy, and polished user exploration across devices.",
+    status: "Live website",
+    technologies: ["Responsive UI", "Product Marketing", "UX Systems"],
+    link: "[ADD CLARITY WEBSITE URL]",
   },
   {
     id: 5,
-    title: "Capital Shop Commerce",
-    category: "Commerce",
+    title: "Clarity — Web Portal",
+    category: "SaaS",
+    filterCategory: "SaaS",
     description:
-      "A full-stack commerce experience combining modern storefront UX, payments, and operations visibility in one system.",
-    domain: "Private delivery",
-    status: "Case study",
-    previewGradient:
-      "linear-gradient(135deg, rgba(255, 188, 66, 0.9), rgba(248, 113, 113, 0.45))",
-    technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "Vercel"],
-    features: [
-      "Responsive storefront UI",
-      "Payment and checkout flows",
-      "Inventory administration",
-      "Operations dashboard",
-    ],
+      "A web portal delivering account management, dashboards, and operational tooling with a clean, intuitive interface.",
+    status: "Live website",
+    technologies: ["React", "Dashboards", "SaaS"],
+    link: "[ADD CLARITY WEB PORTAL URL]",
   },
   {
     id: 6,
-    title: "Mobile Delivery Suite",
+    title: "Clarity — Mobile App",
     category: "Mobile",
+    filterCategory: "Mobile",
     description:
-      "A cross-platform mobile product for ordering, live status visibility, secure payments, and customer retention workflows.",
-    domain: "Private delivery",
-    status: "Case study",
-    previewGradient:
-      "linear-gradient(135deg, rgba(91, 247, 221, 0.92), rgba(14, 165, 233, 0.45))",
-    technologies: ["React Native", "Firebase", "Node.js", "MongoDB", "Stripe"],
-    features: [
-      "Realtime order states",
-      "Secure payment flows",
-      "Operations notifications",
-      "Cross-platform UI system",
-    ],
+      "A cross-platform mobile companion extending the product experience with native-feeling performance and polish.",
+    status: "Live website",
+    technologies: ["React Native", "Mobile", "UX"],
+    link: "[ADD CLARITY MOBILE APP URL]",
+  },
+  {
+    id: 7,
+    title: "Grace Upholstery",
+    category: "Commerce",
+    filterCategory: "Commerce",
+    description:
+      "A commerce experience combining modern storefront UX with clean product presentation and conversion-focused flows.",
+    status: "Live website",
+    technologies: ["Commerce", "Shopify", "Web"],
+    link: "[ADD GRACE UPHOLSTERY URL]",
   },
 ];
 
-const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [filter, setFilter] = useState("All");
+const filters = ["All", "AI", "Web", "Mobile", "SaaS", "Commerce"];
 
-  const categories = ["All", ...new Set(projects.map((project) => project.category))];
+const Portfolio = () => {
+  const [filter, setFilter] = useState("All");
 
   const filteredProjects =
     filter === "All"
       ? projects
-      : projects.filter((project) => project.category === filter);
+      : projects.filter((project) => project.filterCategory === filter);
+
+  const featuredProjects = filteredProjects.filter((p) => p.featured);
+  const standardProjects = filteredProjects.filter((p) => !p.featured);
 
   return (
     <section id="portfolio" className="py-20 sm:py-24 lg:py-32">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-kicker mx-auto fade-in-up">
-              <Sparkles className="h-4 w-4" />
-              Selected projects
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <div className="section-kicker fade-in-up">
+              <span className="accent-dot" />
+              Selected work
             </div>
-            <h2 className="mt-6 text-3xl font-semibold text-white fade-in-up sm:text-4xl md:text-6xl">
+            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-ink fade-in-up sm:text-4xl lg:text-5xl">
               Live launches, premium interfaces, and product systems that convert.
             </h2>
-            <p
-              className="section-copy mx-auto mt-5 max-w-3xl fade-in-up"
-              style={{ animationDelay: "0.12s" }}
-            >
-              The showcase now includes the requested live websites alongside
-              private delivery work to reflect a broader, more current project mix.
-            </p>
           </div>
-
-          <div
-            className="mb-12 flex flex-wrap justify-center gap-3 fade-in-up"
-            style={{ animationDelay: "0.4s" }}
+          <p
+            className="section-copy max-w-sm fade-in-up"
+            style={{ animationDelay: "0.1s" }}
           >
-            {categories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setFilter(category)}
-                className={cn(
-                  "rounded-full border px-5 py-3 text-sm font-medium transition-all duration-300",
-                  filter === category
-                    ? "border-primary/30 bg-primary/10 text-white shadow-quantum"
-                    : "border-white/10 bg-white/5 text-white/70 hover:border-white/20 hover:bg-white/10 hover:text-white",
-                )}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProjects.map((project, index) => (
-              <div
-                key={project.id}
-                className="group fade-in-up"
-                style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-              >
-                <div
-                  className="section-shell elevated-hover h-full cursor-pointer rounded-[24px] p-4 sm:rounded-[30px] sm:p-5"
-                  onClick={() => setSelectedProject(project)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      setSelectedProject(project);
-                    }
-                  }}
-                >
-                  <div
-                    className="surface-grid relative overflow-hidden rounded-[22px] border border-white/10 p-4 sm:rounded-[26px] sm:p-5"
-                    style={{ background: project.previewGradient }}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_35%),linear-gradient(180deg,rgba(7,17,29,0.05),rgba(7,17,29,0.5))]" />
-                    <div className="relative flex min-h-[15rem] flex-col justify-between">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="badge-chip bg-white/12 text-white/85">
-                          {project.status}
-                        </span>
-                        <span className="mono-label max-w-[8.5rem] break-all text-right text-white/60 sm:max-w-none sm:break-normal">
-                          {project.domain}
-                        </span>
-                      </div>
-
-                      <div>
-                        <p className="mono-label text-white/55">Launch module</p>
-                        <h3 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
-                          {project.title}
-                        </h3>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.slice(0, 3).map((tech) => (
-                          <span
-                            key={`${project.id}-${tech}`}
-                            className="rounded-full border border-white/12 bg-[#07111d]/36 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-white/80 backdrop-blur-md"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="badge-chip">{project.category}</span>
-                      <ArrowUpRight className="h-5 w-5 text-white/55 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </div>
-
-                    <p className="mt-4 text-sm leading-7 text-white/68">
-                      {project.description}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <Dialog
-            open={!!selectedProject}
-            onOpenChange={(open) => {
-              if (!open) {
-                setSelectedProject(null);
-              }
-            }}
-          >
-            <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto rounded-[28px] border border-white/10 bg-[#07111d]/95 p-0 text-white shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-2xl sm:rounded-[32px]">
-              {selectedProject && (
-                <div className="overflow-hidden rounded-[28px] sm:rounded-[32px]">
-                  <div
-                    className="surface-grid relative p-6 sm:p-8 md:p-10"
-                    style={{ background: selectedProject.previewGradient }}
-                  >
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,29,0.08),rgba(7,17,29,0.74)),radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_28%)]" />
-                    <div className="relative">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span className="badge-chip bg-white/12 text-white/80">
-                          {selectedProject.status}
-                        </span>
-                        <span className="mono-label text-white/60">
-                          {selectedProject.domain}
-                        </span>
-                      </div>
-                      <h3 className="mt-5 max-w-3xl text-3xl font-semibold sm:text-4xl">
-                        {selectedProject.title}
-                      </h3>
-                      <p className="mt-4 max-w-2xl text-sm leading-7 text-white/72">
-                        {selectedProject.description}
-                      </p>
-                      <div className="mt-6">
-                        <span className="badge-chip bg-white/12 text-white/80">
-                          {selectedProject.category}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6 sm:p-8 md:p-10">
-                    <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr]">
-                      <div>
-                        <h4 className="text-lg font-semibold">Project highlights</h4>
-                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                          {selectedProject.features.map((feature) => (
-                            <div
-                              key={feature}
-                              className="rounded-[22px] border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/72"
-                            >
-                              {feature}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="text-lg font-semibold">Technology layer</h4>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {selectedProject.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/72"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-8 flex flex-wrap gap-4">
-                      {selectedProject.demo ? (
-                        <Button
-                          asChild
-                        className="w-full rounded-full border border-primary/20 bg-[linear-gradient(135deg,#5bf7dd_0%,#2ad4ff_55%,#33cc8c_100%)] px-6 text-slate-950 sm:w-auto"
-                        >
-                          <a
-                            href={selectedProject.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Globe className="h-4 w-4" />
-                            Visit website
-                          </a>
-                        </Button>
-                      ) : null}
-
-                      <Button
-                        asChild
-                        variant="outline"
-                        className="w-full rounded-full border-white/10 bg-white/5 px-6 text-white hover:bg-white/10 hover:text-white sm:w-auto"
-                      >
-                        <a href="#contact" onClick={() => setSelectedProject(null)}>
-                          <ExternalLink className="h-4 w-4" />
-                          Start something similar
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </DialogContent>
-          </Dialog>
+            A mix of live websites and private delivery work across AI, web,
+            mobile, SaaS, and commerce.
+          </p>
         </div>
+
+        {/* Filter */}
+        <div
+          className="mt-10 flex flex-wrap gap-2 fade-in-up"
+          style={{ animationDelay: "0.2s" }}
+        >
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setFilter(f)}
+              className={cn(
+                "rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200",
+                filter === f
+                  ? "border-ink bg-ink text-paper"
+                  : "border-line bg-white text-ink-soft hover:border-ink/20 hover:text-ink",
+              )}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+
+        {/* Featured projects - editorial layout */}
+        {featuredProjects.length > 0 && (
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                large
+                index={index}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Standard projects */}
+        {standardProjects.length > 0 && (
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {standardProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index + featuredProjects.length}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
+  );
+};
+
+const ProjectCard = ({
+  project,
+  large = false,
+  index,
+}: {
+  project: Project;
+  large?: boolean;
+  index: number;
+}) => {
+  const isPlaceholder = project.link.startsWith("[");
+  const linkProps = isPlaceholder
+    ? {}
+    : {
+        href: project.link,
+        target: "_blank" as const,
+        rel: "noopener noreferrer" as const,
+      };
+
+  return (
+    <a
+      {...linkProps}
+      className={cn(
+        "group section-shell elevated-hover block rounded-2xl p-5 fade-in-up sm:p-6",
+        large && "lg:p-7",
+      )}
+      style={{ animationDelay: `${0.3 + index * 0.08}s` }}
+      {...(isPlaceholder ? { "data-placeholder": true } : {})}
+    >
+      {/* Preview area */}
+      <div
+        className={cn(
+          "surface-grid relative overflow-hidden rounded-xl border border-line bg-surface",
+          large ? "min-h-[16rem] sm:min-h-[18rem]" : "min-h-[12rem]",
+        )}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-surface to-paper" />
+        <div className="absolute top-4 left-4 flex items-center gap-2">
+          <span className="badge-chip bg-white/80 backdrop-blur-sm">
+            {project.status}
+          </span>
+        </div>
+        <div className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white shadow-soft transition-all duration-300 group-hover:bg-ink group-hover:text-paper">
+          <ArrowUpRight className="h-4 w-4" />
+        </div>
+        {/* Decorative element */}
+        <div className="absolute bottom-4 left-4">
+          <div className="flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-lime" />
+            <span className="mono-label text-ink-soft">{project.category}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="mt-5">
+        <h3 className={cn("font-semibold text-ink", large ? "text-2xl" : "text-xl")}>
+          {project.title}
+        </h3>
+        <p className="mt-2 text-sm leading-6 text-ink-soft">{project.description}</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-medium text-ink-soft"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        {!isPlaceholder && (
+          <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ink">
+            <ExternalLink className="h-3.5 w-3.5" />
+            Visit project
+          </div>
+        )}
+      </div>
+    </a>
   );
 };
 
