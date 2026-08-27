@@ -294,11 +294,11 @@ const LeadCase = ({ project }: { project: Project }) => {
 
             <dl className="mt-5 space-y-4">
               <div>
-                <dt className="overline">Problem</dt>
+                <dt className="field-label">Problem</dt>
                 <dd className="body-sm mt-1.5">{project.problem}</dd>
               </div>
               <div>
-                <dt className="overline">What we built</dt>
+                <dt className="field-label">What we built</dt>
                 <dd className="body-sm mt-1.5">{project.solution}</dd>
               </div>
             </dl>
@@ -348,7 +348,7 @@ const CaseCard = ({
           <div className="flex items-center justify-between gap-3">
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-              <span className="overline">{project.category}</span>
+              <span className="field-label">{project.category}</span>
             </span>
             <span className="text-[0.72rem] font-medium text-ink-dim">
               {project.status}

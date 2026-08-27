@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -86,20 +86,21 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+body {
+  @apply bg-background text-foreground antialiased;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
     min-height: 100vh;
+    
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   /* One family across the whole product */
-  h1, h2, h3, h4, h5, h6,
-  button, input, textarea, select, optgroup, code, pre, kbd, samp {
-    font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  }
+h1, h2, h3, h4, h5, h6,
+button, input, textarea, select, optgroup, code, pre, kbd, samp {
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
 
   h1, h2, h3, h4, h5, h6 {
     color: hsl(var(--foreground));
@@ -218,7 +219,10 @@
     color: hsl(var(--muted-foreground));
   }
 
-  .overline {
+  /* Named `field-label`, not `overline`: Tailwind has a built-in `overline`
+     text-decoration utility that would win in the cascade and draw a rule
+     above the text. */
+  .field-label {
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.16em;

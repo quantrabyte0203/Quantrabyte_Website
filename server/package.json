@@ -1,17 +1,22 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js",
+    "test": "node --disable-warning=ExperimentalWarning test/flow.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "QuantraByte API - contact form and Wall of Fame",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemailer": "^7.0.6"
+  },
+  "engines": {
+    "node": ">=22.5.0"
   }
 }

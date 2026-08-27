@@ -29,3 +29,8 @@ dist-ssr
 
 # TypeScript incremental build info
 *.tsbuildinfo
+
+# Wall of Fame runtime data
+server/data/
+server/uploads/*
+!server/uploads/.gitkeep

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Icon from "@/components/Icon";
 import Container from "@/components/kit/Container";
 import { scrollToSection } from "@/components/kit/scroll";
@@ -26,6 +27,7 @@ const serviceMenu = [
 const navItems = [
   { href: "#services", label: "Services", menu: serviceMenu },
   { href: "#work", label: "Work" },
+  { to: "/wall-of-fame", label: "Wall of Fame" },
   { href: "#why-us", label: "Why Us" },
   { href: "#about", label: "About" },
 ];
@@ -35,6 +37,8 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const closeTimer = useRef<number>();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -65,6 +69,12 @@ const Header = () => {
   const go = (href: string) => {
     setMobileOpen(false);
     setMenuOpen(false);
+
+    // In-page anchors only exist on the home page.
+    if (location.pathname !== "/") {
+      navigate(`/${href}`);
+      return;
+    }
     scrollToSection(href);
   };
 
@@ -111,7 +121,15 @@ const Header = () => {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) =>
-              item.menu ? (
+              item.to ? (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="rounded-full px-3.5 py-2 text-[0.9rem] font-medium text-ink-soft transition-colors duration-200 hover:text-ink"
+                >
+                  {item.label}
+                </Link>
+              ) : item.menu ? (
                 <div
                   key={item.href}
                   className="relative"
@@ -253,7 +271,23 @@ const Header = () => {
           </div>
 
           <nav className="flex flex-col gap-1 px-5 py-6">
-            {navItems.map((item, index) => (
+            {navItems.map((item, index) =>
+              item.to ? (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between rounded-2xl px-4 py-4 text-left text-[1.35rem] font-semibold tracking-tight text-ink transition-colors duration-200 active:bg-surface-soft"
+                  style={{
+                    animation: mobileOpen
+                      ? `fadeUpIn 0.4s ${0.05 + index * 0.05}s both`
+                      : undefined,
+                  }}
+                >
+                  {item.label}
+                  <Icon name="arrow_outward" size={20} className="text-ink-dim" />
+                </Link>
+              ) : (
               <button
                 key={item.href}
                 type="button"
@@ -268,11 +302,12 @@ const Header = () => {
                 {item.label}
                 <Icon name="arrow_outward" size={20} className="text-ink-dim" />
               </button>
-            ))}
+              ),
+            )}
           </nav>
 
           <div className="mt-auto border-t border-line px-5 py-6">
-            <p className="overline">Services</p>
+            <p className="field-label">Services</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {serviceMenu.map((entry) => (
                 <span key={entry.label} className="chip">

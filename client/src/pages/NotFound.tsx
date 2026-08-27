@@ -28,7 +28,7 @@ const NotFound = () => {
             className="animate-float mx-auto w-40 drop-shadow-[0_20px_30px_rgba(17,19,18,0.14)]"
           />
 
-          <p className="overline mt-8">Page not found</p>
+          <p className="field-label mt-8">Page not found</p>
           <h1 className="display-1 mt-3 text-[clamp(3rem,10vw,4.5rem)]">
             <span className="lime-underline">404</span>
           </h1>

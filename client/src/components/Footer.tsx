@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Icon from "@/components/Icon";
 import BrandIcon from "@/components/BrandIcon";
 import Container from "@/components/kit/Container";
@@ -9,6 +10,7 @@ import logoMark from "@/assets/QBlogo-mark.png";
 const navigationLinks = [
   { href: "#services", label: "Services" },
   { href: "#work", label: "Work" },
+  { to: "/wall-of-fame", label: "Wall of Fame" },
   { href: "#why-us", label: "Why Us" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
@@ -38,6 +40,18 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Anchors only exist on the home page - hop there first from other routes.
+  const goToSection = (href: string) => {
+    if (location.pathname !== "/") {
+      navigate(`/${href}`);
+      return;
+    }
+    scrollToSection(href);
+  };
+
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -110,17 +124,26 @@ const Footer = () => {
 
           {/* Navigation */}
           <nav>
-            <h3 className="overline">Navigate</h3>
+            <h3 className="field-label">Navigate</h3>
             <ul className="mt-5 space-y-3">
               {navigationLinks.map((link) => (
-                <li key={link.href}>
-                  <button
-                    type="button"
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-left text-[0.9rem] text-ink-soft transition-colors duration-200 hover:text-ink"
-                  >
-                    {link.label}
-                  </button>
+                <li key={link.to ?? link.href}>
+                  {link.to ? (
+                    <Link
+                      to={link.to}
+                      className="text-left text-[0.9rem] text-ink-soft transition-colors duration-200 hover:text-ink"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => goToSection(link.href)}
+                      className="text-left text-[0.9rem] text-ink-soft transition-colors duration-200 hover:text-ink"
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -128,7 +151,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="overline">Services</h3>
+            <h3 className="field-label">Services</h3>
             <ul className="mt-5 space-y-3">
               {serviceLinks.map((service) => (
                 <li key={service} className="text-[0.9rem] text-ink-soft">
@@ -140,7 +163,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="overline">Contact</h3>
+            <h3 className="field-label">Contact</h3>
             <div className="mt-5 space-y-4">
               <a
                 href="mailto:info@quantrabyte.com"
@@ -179,7 +202,7 @@ const Footer = () => {
           </p>
           <p className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-            Built by QuantraByte in Indore, India
+            Built by QuantraByte, India
           </p>
         </div>
       </Container>

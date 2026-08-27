@@ -152,7 +152,7 @@ const Contact = () => {
           {/* Form */}
           <Reveal>
             <div className="card p-6 sm:p-8 lg:p-10">
-              <p className="overline">Project enquiry</p>
+              <p className="field-label">Project enquiry</p>
               <h3 className="display-3 mt-3">Send us the brief.</h3>
               <p className="body-sm mt-3">
                 The cleaner the context, the faster we can propose the right
@@ -163,7 +163,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="overline block">
+                    <label htmlFor="name" className="field-label block">
                       Full Name *
                     </label>
                     <Input
@@ -178,7 +178,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="overline block">
+                    <label htmlFor="email" className="field-label block">
                       Email Address *
                     </label>
                     <Input
@@ -195,7 +195,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="overline block">
+                  <label htmlFor="subject" className="field-label block">
                     Subject
                   </label>
                   <Input
@@ -210,7 +210,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="overline block">
+                  <label htmlFor="message" className="field-label block">
                     Message *
                   </label>
                   <Textarea
@@ -270,7 +270,7 @@ const Contact = () => {
                       <Icon name={info.icon} size={21} />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="overline block">{info.title}</span>
+                      <span className="field-label block">{info.title}</span>
                       <span className="mt-1 block break-words text-[0.95rem] font-medium text-ink">
                         {info.content}
                       </span>

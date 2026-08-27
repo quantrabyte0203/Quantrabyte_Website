@@ -59,7 +59,7 @@ const Team = () => (
         <div className="flex flex-col gap-5">
           <Reveal delay={0.08}>
             <div className="card p-6 sm:p-8">
-              <p className="overline">Leadership profile</p>
+              <p className="field-label">Leadership profile</p>
               <h3 className="display-3 mt-3">
                 Founder-led direction from strategy through shipment.
               </h3>
@@ -73,7 +73,7 @@ const Team = () => (
                       size={18}
                       className="text-lime-ink"
                     />
-                    <p className="overline mt-3">{signal.label}</p>
+                    <p className="field-label mt-3">{signal.label}</p>
                     <p className="mt-1.5 text-[0.9rem] font-medium leading-snug text-ink">
                       {signal.value}
                     </p>
