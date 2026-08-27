@@ -1,31 +1,33 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
+import TrustStrip from "@/components/TrustStrip";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
-import About from "@/components/About";
+import WhyUs from "@/components/WhyUs";
+import Process from "@/components/Process";
+import Capabilities from "@/components/Capabilities";
 import Team from "@/components/Team";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-const Index = () => {
-  return (
-    <div className="site-shell min-h-screen">
-      <Header />
-      <main className="relative z-10">
-        <Hero />
-        <Stats />
-        <Services />
-        <Portfolio />
-        <About />
-        <Team />
-        <CTA />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+const Index = () => (
+  <div className="min-h-screen bg-paper">
+    <Header />
+    <main>
+      <Hero />
+      <TrustStrip />
+      <Services />
+      <Portfolio />
+      <WhyUs />
+      <Process />
+      <Capabilities />
+      <Team />
+      <CTA />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Index;

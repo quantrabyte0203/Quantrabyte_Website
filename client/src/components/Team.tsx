@@ -1,10 +1,13 @@
 import Icon from "@/components/Icon";
+import Container from "@/components/kit/Container";
+import Reveal from "@/components/kit/Reveal";
+import SectionHeading from "@/components/kit/SectionHeading";
 import founderImage from "@/assets/AnshulD.png";
 
 const founder = {
   name: "Anshul Thakur",
   position: "CEO & Founder",
-  bio: "Founder-led execution sits at the center of QuantraByte. Anshul drives product direction, full-stack delivery, and AI-enabled solutions with a focus on turning ambitious concepts into scalable digital products.",
+  bio: "Founder-led execution sits at the center of QuantraByte. Anshul drives product direction, full-stack delivery and AI-enabled solutions, with a focus on turning ambitious concepts into scalable digital products.",
   expertise: [
     "AI-native product strategy",
     "Full-stack architecture",
@@ -12,105 +15,116 @@ const founder = {
     "Scalable launch systems",
   ],
   signals: [
-    { label: "Approach", value: "Founder-led delivery" },
-    { label: "Focus", value: "AI + full-stack products" },
-    { label: "Priority", value: "Speed with quality control" },
+    { label: "Approach", value: "Founder-led delivery", icon: "person_check" },
+    { label: "Focus", value: "AI + full-stack products", icon: "target" },
+    { label: "Priority", value: "Speed with quality control", icon: "bolt" },
   ],
 };
 
-const Team = () => {
-  return (
-    <section id="team" className="py-16 sm:py-20 lg:py-24">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-2xl">
-          <div className="section-kicker fade-in-up">
-            <span className="accent-dot" />
-            Founder
-          </div>
-          <h2 className="mt-6 text-3xl font-semibold tracking-tight text-ink fade-in-up sm:text-4xl lg:text-5xl">
-            One accountable product lead, from strategy to shipment.
-          </h2>
-          <p
-            className="section-copy mt-5 fade-in-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            There is a real person accountable for the product outcome.
-            QuantraByte stays intentionally lean so decisions are fast,
-            communication is direct, and execution quality stays visible.
-          </p>
-        </div>
+const Team = () => (
+  <section id="about" className="section-y">
+    <Container>
+      <SectionHeading
+        eyebrow="About"
+        title={
+          <>
+            One accountable product lead, from strategy to{" "}
+            <span className="lime-underline">shipment.</span>
+          </>
+        }
+        description="There is a real person accountable for the outcome. QuantraByte stays intentionally lean so decisions are fast and communication stays direct."
+      />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          {/* Portrait */}
-          <div className="section-shell overflow-hidden rounded-2xl fade-in-left">
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
-                src={founderImage}
-                alt={founder.name}
-                className="h-full min-h-[22rem] w-full object-cover object-top sm:min-h-[26rem] lg:min-h-[30rem]"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-paper via-paper/80 to-transparent p-6 pt-16">
-                <h3 className="text-xl font-semibold text-ink">{founder.name}</h3>
-                <p className="mt-1 text-sm text-ink-soft">{founder.position}</p>
-              </div>
-            </div>
-          </div>
+      <div className="mt-12 grid gap-5 lg:mt-14 lg:grid-cols-[0.78fr_1.22fr]">
+        {/* Portrait */}
+        <Reveal>
+          <figure className="card relative h-full overflow-hidden p-0">
+            <img
+              src={founderImage}
+              alt={founder.name}
+              className="h-full min-h-[22rem] w-full object-cover object-top sm:min-h-[26rem]"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/70 to-transparent p-6 pt-16">
+              <p className="text-[1.15rem] font-semibold tracking-tight text-paper">
+                {founder.name}
+              </p>
+              <p className="mt-1 text-[0.85rem] text-paper/70">
+                {founder.position}
+              </p>
+            </figcaption>
+          </figure>
+        </Reveal>
 
-          {/* Profile content */}
-          <div className="space-y-6 fade-in-right" style={{ animationDelay: "0.15s" }}>
-            <div className="section-shell rounded-2xl p-6 sm:p-8">
-              <p className="mono-label">Leadership profile</p>
-              <h3 className="mt-3 text-xl font-semibold text-ink sm:text-2xl">
+        {/* Profile */}
+        <div className="flex flex-col gap-5">
+          <Reveal delay={0.08}>
+            <div className="card p-6 sm:p-8">
+              <p className="overline">Leadership profile</p>
+              <h3 className="display-3 mt-3">
                 Founder-led direction from strategy through shipment.
               </h3>
-              <p className="mt-4 text-sm leading-7 text-ink-soft">{founder.bio}</p>
+              <p className="body-sm mt-4">{founder.bio}</p>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
                 {founder.signals.map((signal) => (
-                  <div key={signal.label} className="surface-soft rounded-xl p-4">
-                    <p className="mono-label">{signal.label}</p>
-                    <p className="mt-2 text-sm leading-6 text-ink">{signal.value}</p>
+                  <div key={signal.label} className="card-soft p-4">
+                    <Icon
+                      name={signal.icon}
+                      size={18}
+                      className="text-lime-ink"
+                    />
+                    <p className="overline mt-3">{signal.label}</p>
+                    <p className="mt-1.5 text-[0.9rem] font-medium leading-snug text-ink">
+                      {signal.value}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
+          </Reveal>
 
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div className="section-shell rounded-2xl p-6">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Reveal delay={0.12} className="h-full">
+              <div className="card flex h-full flex-col p-6">
                 <div className="flex items-center gap-2.5">
-                  <Icon name="verified" size={22} className="text-lime" />
-                  <h4 className="text-base font-semibold text-ink">Core expertise</h4>
+                  <Icon name="verified" size={20} className="text-lime-ink" />
+                  <h4 className="text-[1rem] font-semibold tracking-tight text-ink">
+                    Core expertise
+                  </h4>
                 </div>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-1.5">
                   {founder.expertise.map((item) => (
-                    <span key={item} className="badge-chip">
+                    <span key={item} className="chip-flat">
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
+            </Reveal>
 
-              <div className="section-shell rounded-2xl p-6">
+            <Reveal delay={0.16} className="h-full">
+              <div className="card flex h-full flex-col p-6">
                 <div className="flex items-center gap-2.5">
-                  <Icon name="rocket_launch" size={22} className="text-cyan" />
-                  <h4 className="text-base font-semibold text-ink">Working principle</h4>
+                  <Icon name="rocket_launch" size={20} className="text-lime-ink" />
+                  <h4 className="text-[1rem] font-semibold tracking-tight text-ink">
+                    Working principle
+                  </h4>
                 </div>
-                <p className="mt-4 text-sm leading-6 text-ink-soft">
-                  QuantraByte stays intentionally lean so decisions are fast,
-                  communication is direct, and execution quality stays visible
-                  at every stage of the build.
+                <p className="body-sm mt-3 flex-1 text-[0.9rem]">
+                  Stay lean, decide fast, keep execution quality visible at every
+                  stage of the build.
                 </p>
-                <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-ink">
-                  <div className="h-1.5 w-1.5 rounded-full bg-lime" />
+                <p className="mt-4 flex items-center gap-2 text-[0.85rem] font-medium text-ink">
+                  <span className="h-1.5 w-1.5 rounded-full bg-lime" />
                   Founder access from kickoff to launch
-                </div>
+                </p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </Container>
+  </section>
+);
 
 export default Team;

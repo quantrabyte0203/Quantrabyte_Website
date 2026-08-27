@@ -1,164 +1,115 @@
 import Icon from "@/components/Icon";
+import Container from "@/components/kit/Container";
+import Reveal from "@/components/kit/Reveal";
+import SectionHeading from "@/components/kit/SectionHeading";
+import { scrollToSection } from "@/components/kit/scroll";
 
-const serviceGroups = [
+/** Primary offering - unchanged from the existing service stack. */
+const services = [
   {
-    title: "AI Products",
     icon: "neurology",
-    description: "AI as a real capability, not a label.",
-    items: [
-      "Generative AI",
-      "AI Agents",
-      "RAG systems",
-      "AI assistants",
-      "AI automation",
-      "AI integrations",
-    ],
+    title: "AI Products",
+    description:
+      "AI as a real capability, not a label. Agents, assistants and retrieval systems that do actual work.",
+    items: ["Generative AI", "AI Agents", "RAG systems", "AI automation"],
+    featured: true,
   },
   {
+    icon: "deployed_code",
     title: "Digital Products",
-    icon: "code_blocks",
-    description: "Product engineering across every surface.",
-    items: [
-      "SaaS",
-      "Web applications",
-      "Mobile applications",
-      "Dashboards",
-      "Internal tools",
-      "Product engineering",
-    ],
+    description:
+      "Product engineering across every surface, from first release to a platform teams depend on.",
+    items: ["SaaS", "Web applications", "Dashboards", "Internal tools"],
   },
   {
+    icon: "storefront",
     title: "Commerce & Platforms",
-    icon: "language",
-    description: "Fast delivery across the ecosystems clients ask for most.",
-    items: [
-      "Shopify",
-      "Magento",
-      "WordPress",
-      "Squarespace",
-      "Custom commerce",
-      "Integrations",
-    ],
+    description:
+      "Fast, dependable delivery on the ecosystems clients ask for most, with clean custom work where it counts.",
+    items: ["Shopify", "Magento", "WordPress", "Custom commerce"],
   },
-];
-
-const additionalCapabilities = [
   {
     icon: "smartphone",
     title: "Mobile Applications",
-    description: "Native and cross-platform mobile apps with exceptional UX.",
+    description:
+      "Native and cross-platform apps with the performance and polish of a product, not a port.",
+    items: ["iOS", "Android", "React Native", "App UX"],
   },
   {
     icon: "cloud",
-    title: "Cloud Integration",
-    description: "Scalable infrastructure, serverless, and API integration.",
-  },
-  {
-    icon: "web_asset",
-    title: "Desktop Applications",
-    description: "Electron.js apps, internal tools, and SaaS companions.",
+    title: "Cloud & Integrations",
+    description:
+      "Scalable infrastructure, serverless workloads and the API plumbing that keeps systems talking.",
+    items: ["Serverless", "APIs", "Automation", "DevOps"],
   },
   {
     icon: "groups",
     title: "Staff Augmentation",
-    description: "Dedicated teams and project-based end-to-end delivery.",
+    description:
+      "Dedicated engineers or a full squad, plugged into your roadmap for end-to-end delivery.",
+    items: ["Dedicated teams", "Project delivery", "Product engineering"],
   },
 ];
 
-const Services = () => {
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <section id="services" className="py-16 sm:py-20 lg:py-24">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="max-w-2xl">
-          <div className="section-kicker fade-in-up">
-            <span className="accent-dot" />
-            Service stack
-          </div>
-          <h2 className="mt-6 text-3xl font-semibold tracking-tight text-ink fade-in-up sm:text-4xl lg:text-5xl">
-            Design, build, automate, and scale from one product partner.
-          </h2>
-          <p
-            className="section-copy mt-5 fade-in-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            We are a product engineering studio, not just a list of technologies.
-            Three primary capability areas, with additional support where needed.
-          </p>
-        </div>
-
-        {/* Primary capability groups */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {serviceGroups.map((group, index) => (
-            <div
-              key={group.title}
-              className="section-shell elevated-hover rounded-2xl p-6 sm:p-8 fade-in-up"
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-lime/30 bg-lime/10 text-lime">
-                <Icon name={group.icon} size={22} />
-              </div>
-              <h3 className="mt-5 text-xl font-semibold text-ink">{group.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-ink-soft">{group.description}</p>
-              <ul className="mt-6 space-y-2.5">
-                {group.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-ink">
-                    <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-lime" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional capabilities */}
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {additionalCapabilities.map((cap, index) => (
-            <div
-              key={cap.title}
-              className="surface-soft elevated-hover rounded-xl p-5 fade-in-up"
-              style={{ animationDelay: `${0.4 + index * 0.08}s` }}
-            >
-              <Icon name={cap.icon} size={22} className="text-cyan" />
-              <h4 className="mt-4 text-sm font-semibold text-ink">{cap.title}</h4>
-              <p className="mt-2 text-xs leading-5 text-ink-soft">{cap.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA bar */}
-        <div
-          className="section-shell mt-8 flex flex-col gap-5 overflow-hidden rounded-2xl p-6 sm:p-8 md:flex-row md:items-center md:justify-between fade-in-up"
-          style={{ animationDelay: "0.6s" }}
-        >
-          <div className="max-w-xl">
-            <h3 className="text-xl font-semibold text-ink sm:text-2xl">
-              Need a lean product squad or a full delivery partner?
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-ink-soft">
-              We can plug into a single sprint, own a complete launch, or act as
-              the design and engineering arm behind your product roadmap.
-            </p>
-          </div>
+const Services = () => (
+  <section id="services" className="section-y">
+    <Container>
+      <SectionHeading
+        eyebrow="What we do"
+        title={
+          <>
+            Design, build, automate and{" "}
+            <span className="lime-underline">scale</span> - from one partner.
+          </>
+        }
+        description="We are a product engineering studio, not a list of technologies. Six capability areas that cover a product from first scope to long-term growth."
+        action={
           <button
             type="button"
-            onClick={scrollToContact}
-            className="btn-primary group shrink-0 px-6 py-3.5 text-sm"
+            onClick={() => scrollToSection("#contact")}
+            className="btn btn-outline group h-11 pl-5 pr-1.5"
           >
             Discuss your roadmap
-            <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-lime text-ink transition-transform duration-300 group-hover:translate-x-0.5">
+              <Icon name="arrow_forward" size={16} />
+            </span>
           </button>
-        </div>
+        }
+      />
+
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+        {services.map((service, index) => (
+          <Reveal
+            key={service.title}
+            delay={0.05 * (index % 3)}
+            as="article"
+            className="h-full"
+          >
+            <div
+              className={`card card-lift group flex h-full flex-col p-6 sm:p-7 ${
+                service.featured ? "sm:col-span-2 lg:col-span-1" : ""
+              }`}
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-[0.9rem] bg-lime-soft text-ink transition-colors duration-300 group-hover:bg-lime">
+                <Icon name={service.icon} size={24} />
+              </span>
+
+              <h3 className="display-3 mt-6">{service.title}</h3>
+              <p className="body-sm mt-3 flex-1">{service.description}</p>
+
+              <div className="mt-6 flex flex-wrap gap-1.5 border-t border-line pt-5">
+                {service.items.map((item) => (
+                  <span key={item} className="chip-flat">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+    </Container>
+  </section>
+);
 
 export default Services;

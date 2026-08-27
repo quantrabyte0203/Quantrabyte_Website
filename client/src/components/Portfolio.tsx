@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Icon from "@/components/Icon";
+import Container from "@/components/kit/Container";
+import Reveal from "@/components/kit/Reveal";
+import SectionHeading from "@/components/kit/SectionHeading";
 import { cn } from "@/lib/utils";
 
 interface Project {
@@ -7,14 +10,15 @@ interface Project {
   title: string;
   category: string;
   filterCategory: string;
-  description: string;
+  /** What the work set out to solve. */
+  problem: string;
+  /** What we built. */
+  solution: string;
   status: string;
   technologies: string[];
-  /** Screenshot in /public/projects_images (2.2:1 capture). */
   image: string;
   /** Public project URL. Empty for app-store-only or private delivery work. */
   link: string;
-  /** Shown instead of a domain when there is no public web URL. */
   availability?: string;
 }
 
@@ -24,8 +28,10 @@ const projects: Project[] = [
     title: "Averentis",
     category: "Web",
     filterCategory: "Web",
-    description:
-      "A high-trust digital presence built to present services clearly, sharpen positioning, and convert visitors into conversations.",
+    problem:
+      "A services business whose positioning was not landing with the buyers it wanted.",
+    solution:
+      "A high-trust digital presence that presents the offering clearly and turns visitors into conversations.",
     status: "Live website",
     technologies: ["React", "TypeScript", "Motion UI", "SEO"],
     image: "/projects_images/averentis.png",
@@ -36,8 +42,10 @@ const projects: Project[] = [
     title: "MilesCopilot",
     category: "AI",
     filterCategory: "AI",
-    description:
-      "An AI-powered copilot experience designed to assist users with intelligent automation and contextual guidance.",
+    problem:
+      "Marketing teams losing time to manual research and disconnected tooling.",
+    solution:
+      "An AI copilot that handles intelligent automation and gives contextual guidance in the flow of work.",
     status: "Live website",
     technologies: ["AI", "React", "TypeScript"],
     image: "/projects_images/miles.png",
@@ -45,11 +53,13 @@ const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Slaapable AI",
+    title: "Sleepable AI",
     category: "AI · Mobile",
     filterCategory: "AI",
-    description:
-      "An AI-driven sleep and wellness mobile app for iOS and Android, pairing intelligent sleep insights with a calm, premium interface.",
+    problem:
+      "Sleep data that people collect but never turn into anything they can act on.",
+    solution:
+      "An AI-driven iOS and Android app pairing sleep insight with a calm, premium interface.",
     status: "iOS & Android app",
     technologies: ["AI", "iOS", "Android", "Product Design"],
     image: "/projects_images/sleepable.png",
@@ -61,8 +71,10 @@ const projects: Project[] = [
     title: "Calarity - Website",
     category: "Web",
     filterCategory: "Web",
-    description:
-      "A calarity-first product presence with clean messaging, crisp hierarchy, and polished user exploration across devices.",
+    problem:
+      "A clinical AI product that needed to explain itself to a careful, high-stakes audience.",
+    solution:
+      "A calarity-first presence with crisp hierarchy and polished exploration across every device.",
     status: "Live website",
     technologies: ["Responsive UI", "Product Marketing", "UX Systems"],
     image: "/projects_images/calarity_website.png",
@@ -73,8 +85,10 @@ const projects: Project[] = [
     title: "Calarity - Web Portal",
     category: "SaaS",
     filterCategory: "SaaS",
-    description:
-      "A web portal delivering account management, dashboards, and operational tooling with a clean, intuitive interface.",
+    problem:
+      "Account management and day-to-day operations spread across disconnected tools.",
+    solution:
+      "A web portal bringing dashboards, accounts and operational tooling into one intuitive interface.",
     status: "Live portal",
     technologies: ["React", "Dashboards", "SaaS"],
     image: "/projects_images/calarity_portal.png",
@@ -85,8 +99,10 @@ const projects: Project[] = [
     title: "Calarity - Mobile App",
     category: "Mobile",
     filterCategory: "Mobile",
-    description:
-      "A cross-platform mobile companion extending the product experience with native-feeling performance and polish.",
+    problem:
+      "Users who needed the product with them, not just at a desk.",
+    solution:
+      "A cross-platform companion that extends the product with native-feeling performance and polish.",
     status: "iOS & Android app",
     technologies: ["React Native", "Mobile", "UX"],
     image: "/projects_images/calarity_mobile_app.png",
@@ -94,11 +110,13 @@ const projects: Project[] = [
   },
   {
     id: 7,
-    title: "Grace Upholstery",
+    title: "Grace Ann Upholstery",
     category: "Commerce",
     filterCategory: "Commerce",
-    description:
-      "A commerce experience combining modern storefront UX with clean product presentation and conversion-focused flows.",
+    problem:
+      "A craft workroom whose work looked far better in person than online.",
+    solution:
+      "A storefront experience with clean product presentation and conversion-focused flows.",
     status: "Live website",
     technologies: ["Commerce", "Shopify", "Web"],
     image: "/projects_images/grace.png",
@@ -119,136 +137,127 @@ const getDomain = (link: string) => {
 const Portfolio = () => {
   const [filter, setFilter] = useState("All");
 
-  const filteredProjects =
+  const filtered =
     filter === "All"
       ? projects
-      : projects.filter((project) => project.filterCategory === filter);
+      : projects.filter((p) => p.filterCategory === filter);
 
-  const [lead, ...rest] = filteredProjects;
+  const [lead, ...rest] = filtered;
 
   return (
-    <section id="portfolio" className="relative py-16 sm:py-20 lg:py-24">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <div className="section-kicker fade-in-up">
-              <span className="accent-dot" />
-              Selected work
-            </div>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-ink fade-in-up sm:text-4xl lg:text-5xl">
-              Live launches, premium interfaces, and product systems that convert.
-            </h2>
+    <section id="work" className="section-y bg-surface-soft/60">
+      <Container>
+        <SectionHeading
+          eyebrow="Selected work"
+          title={
+            <>
+              Products that launched, and kept{" "}
+              <span className="lime-underline">earning their keep.</span>
+            </>
+          }
+          description="Live websites, shipped mobile apps and product platforms across AI, web, SaaS and commerce."
+        />
+
+        {/* Filters */}
+        <Reveal delay={0.08}>
+          <div className="mt-10 flex flex-wrap gap-2">
+            {filters.map((f) => (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setFilter(f)}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-[0.85rem] font-medium transition-all duration-200",
+                  filter === f
+                    ? "border-ink bg-ink text-paper"
+                    : "border-line bg-surface text-ink-soft hover:border-line-strong hover:text-ink",
+                )}
+              >
+                {f}
+              </button>
+            ))}
           </div>
-          <p
-            className="section-copy max-w-sm fade-in-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            A mix of live websites, shipped mobile apps, and product platforms
-            across AI, web, SaaS, and commerce.
-          </p>
-        </div>
+        </Reveal>
 
-        {/* Filter */}
-        <div
-          className="mt-10 flex flex-wrap gap-2 fade-in-up"
-          style={{ animationDelay: "0.2s" }}
-        >
-          {filters.map((f) => (
-            <button
-              key={f}
-              type="button"
-              onClick={() => setFilter(f)}
-              className={cn(
-                "rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200",
-                filter === f
-                  ? "border-lime/60 bg-lime/15 text-lime shadow-[0_0_20px_hsl(76_77%_57%_/_0.18)]"
-                  : "border-line bg-surface/70 text-ink-soft hover:border-lime/40 hover:text-ink",
-              )}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
+        {lead && <LeadCase project={lead} />}
 
-        {/* Lead project - full width */}
-        {lead && <LeadCard project={lead} />}
-
-        {/* Remaining projects - equal-height grid */}
         {rest.length > 0 && (
           <div
             className={cn(
-              "mt-6 grid auto-rows-fr gap-6",
-              rest.length <= 2
-                ? "sm:grid-cols-2"
-                : "sm:grid-cols-2 lg:grid-cols-3",
+              "mt-6 grid auto-rows-fr gap-5",
+              rest.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3",
             )}
           >
             {rest.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index + 1} />
+              <CaseCard key={project.id} project={project} index={index} />
             ))}
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 };
 
-/** Browser-chrome strip that frames every screenshot. */
-const ChromeBar = ({ label, live }: { label: string; live: boolean }) => (
-  <div className="flex items-center gap-3 border-b border-line bg-paper/70 px-4 py-2.5">
-    <span className="flex shrink-0 gap-1.5">
-      <span className="h-2 w-2 rounded-full bg-line" />
-      <span className="h-2 w-2 rounded-full bg-line" />
-      <span className="h-2 w-2 rounded-full bg-lime/70" />
-    </span>
-    <span className="flex min-w-0 flex-1 items-center gap-1.5 rounded-md border border-line bg-surface/70 px-2.5 py-1">
-      <Icon name={live ? "lock" : "smartphone"} size={13} className="text-ink-dim" />
-      <span className="truncate text-[0.68rem] font-medium tracking-wide text-ink-soft">
-        {label}
-      </span>
-    </span>
-  </div>
-);
-
-/** Screenshot frame - the capture is shown whole, never cropped. */
-const Screenshot = ({
-  src,
-  alt,
-  priority = false,
+/** Framed screenshot - the capture is always shown whole. */
+const Shot = ({
+  project,
+  eager = false,
 }: {
-  src: string;
-  alt: string;
-  priority?: boolean;
-}) => (
-  <div className="relative aspect-[22/10] w-full overflow-hidden bg-paper">
-    <img
-      src={src}
-      alt={alt}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      className="h-full w-full object-contain object-center transition duration-500 ease-out group-hover:brightness-110"
-    />
-    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
-  </div>
-);
+  project: Project;
+  eager?: boolean;
+}) => {
+  const domain = getDomain(project.link);
 
-const MetaRow = ({ project }: { project: Project }) => {
+  return (
+    <div className="overflow-hidden rounded-[1rem] border border-line bg-paper">
+      <div className="flex items-center gap-2.5 border-b border-line bg-surface-soft px-3.5 py-2.5">
+        <span className="flex shrink-0 gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-line-strong" />
+          <span className="h-2 w-2 rounded-full bg-line-strong" />
+          <span className="h-2 w-2 rounded-full bg-lime" />
+        </span>
+        <span className="flex min-w-0 flex-1 items-center gap-1.5 rounded-md bg-surface px-2.5 py-1">
+          <Icon
+            name={domain ? "lock" : "smartphone"}
+            size={12}
+            className="text-ink-dim"
+          />
+          <span className="truncate text-[0.7rem] font-medium text-ink-soft">
+            {domain || project.status.toLowerCase()}
+          </span>
+        </span>
+      </div>
+
+      <div className="aspect-[22/10] w-full overflow-hidden bg-paper">
+        <img
+          src={project.image}
+          alt={`${project.title} interface`}
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
+          className="h-full w-full object-contain transition duration-500 group-hover:brightness-[1.02]"
+        />
+      </div>
+    </div>
+  );
+};
+
+const VisitLine = ({ project }: { project: Project }) => {
   const domain = getDomain(project.link);
 
   return project.link ? (
-    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-lime transition-colors duration-200 group-hover:text-lime-bright">
-      <Icon name="open_in_new" size={16} />
+    <span className="inline-flex items-center gap-1.5 text-[0.85rem] font-semibold text-ink">
       {domain}
+      <Icon name="arrow_outward" size={15} className="text-lime-ink" />
     </span>
   ) : (
-    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft">
-      <Icon name="phone_iphone" size={16} className="text-cyan" />
+    <span className="inline-flex items-center gap-1.5 text-[0.85rem] font-medium text-ink-soft">
+      <Icon name="phone_iphone" size={15} />
       {project.availability ?? "Link available on request"}
     </span>
   );
 };
 
-const cardLinkProps = (project: Project) =>
+const linkProps = (project: Project) =>
   project.link
     ? {
         href: project.link,
@@ -258,70 +267,67 @@ const cardLinkProps = (project: Project) =>
       }
     : {};
 
-const LeadCard = ({ project }: { project: Project }) => {
+const LeadCase = ({ project }: { project: Project }) => {
   const Wrapper = project.link ? "a" : "div";
-  const domain = getDomain(project.link);
 
   return (
-    <Wrapper
-      {...cardLinkProps(project)}
-      className="group section-shell elevated-hover mt-10 block overflow-hidden rounded-3xl fade-in-up"
-      style={{ animationDelay: "0.3s" }}
-    >
-      <ChromeBar label={domain || project.status.toLowerCase()} live={!!domain} />
-      <Screenshot src={project.image} alt={`${project.title} screenshot`} priority />
+    <Reveal delay={0.1}>
+      <Wrapper
+        {...linkProps(project)}
+        className="card card-lift group mt-6 block overflow-hidden p-4 sm:p-5"
+      >
+        <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:gap-8">
+          <Shot project={project} eager />
 
-      <div className="grid gap-6 border-t border-line p-6 sm:p-8 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-10">
-        <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="badge-chip">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-              {project.category}
-            </span>
-            <span className="badge-chip">
-              <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-              {project.status}
-            </span>
-          </div>
-          <h3 className="mt-4 text-2xl font-bold text-ink transition-colors duration-300 group-hover:text-lime sm:text-3xl">
-            {project.title}
-          </h3>
-          <p className="mt-3 max-w-xl text-sm leading-7 text-ink-soft sm:text-base">
-            {project.description}
-          </p>
-        </div>
-
-        <div className="lg:text-right">
-          <div className="flex flex-wrap gap-2 lg:justify-end">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-line bg-surface/70 px-2.5 py-1 text-xs font-medium text-ink-soft"
-              >
-                {tech}
+          <div className="flex flex-col justify-center px-1 pb-2 lg:px-4 lg:py-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="chip">
+                <span className="h-1.5 w-1.5 rounded-full bg-lime" />
+                {project.category}
               </span>
-            ))}
-          </div>
-          <div className="mt-5 flex items-center gap-3 lg:justify-end">
-            <MetaRow project={project} />
-            <span
-              className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300",
-                project.link
-                  ? "border-lime/40 bg-lime/10 text-lime group-hover:bg-lime group-hover:text-paper"
-                  : "border-line bg-surface text-ink-dim",
-              )}
-            >
-              <Icon name={project.link ? "arrow_outward" : "install_mobile"} size={18} />
-            </span>
+              <span className="chip">{project.status}</span>
+            </div>
+
+            <h3 className="display-2 mt-5 text-[1.85rem] sm:text-[2.15rem]">
+              {project.title}
+            </h3>
+
+            <dl className="mt-5 space-y-4">
+              <div>
+                <dt className="overline">Problem</dt>
+                <dd className="body-sm mt-1.5">{project.problem}</dd>
+              </div>
+              <div>
+                <dt className="overline">What we built</dt>
+                <dd className="body-sm mt-1.5">{project.solution}</dd>
+              </div>
+            </dl>
+
+            <div className="mt-6 flex flex-wrap gap-1.5">
+              {project.technologies.map((tech) => (
+                <span key={tech} className="chip-flat">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-6 flex items-center justify-between gap-4 border-t border-line pt-5">
+              <VisitLine project={project} />
+              <span className="btn-orb h-10 w-10">
+                <Icon
+                  name={project.link ? "arrow_outward" : "install_mobile"}
+                  size={18}
+                />
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </Reveal>
   );
 };
 
-const ProjectCard = ({
+const CaseCard = ({
   project,
   index,
 }: {
@@ -329,61 +335,50 @@ const ProjectCard = ({
   index: number;
 }) => {
   const Wrapper = project.link ? "a" : "div";
-  const domain = getDomain(project.link);
 
   return (
-    <Wrapper
-      {...cardLinkProps(project)}
-      className="group section-shell elevated-hover flex h-full flex-col overflow-hidden rounded-2xl fade-in-up"
-      style={{ animationDelay: `${0.35 + index * 0.07}s` }}
-    >
-      <ChromeBar label={domain || project.status.toLowerCase()} live={!!domain} />
-      <Screenshot src={project.image} alt={`${project.title} screenshot`} />
+    <Reveal delay={0.05 * (index % 3)} className="h-full">
+      <Wrapper
+        {...linkProps(project)}
+        className="card card-lift group flex h-full flex-col p-4"
+      >
+        <Shot project={project} />
 
-      <div className="flex flex-1 flex-col border-t border-line p-5">
-        <div className="flex items-center justify-between gap-3">
-          <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-            <span className="mono-label">{project.category}</span>
-          </span>
-          <span className="text-[0.68rem] font-medium text-ink-dim">
-            {project.status}
-          </span>
-        </div>
-
-        <h3 className="mt-3 text-xl font-bold text-ink transition-colors duration-300 group-hover:text-lime">
-          {project.title}
-        </h3>
-        <p className="mt-2 flex-1 text-sm leading-6 text-ink-soft">
-          {project.description}
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-line bg-surface/70 px-2.5 py-1 text-xs font-medium text-ink-soft"
-            >
-              {tech}
+        <div className="flex flex-1 flex-col px-1 pt-5">
+          <div className="flex items-center justify-between gap-3">
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-lime" />
+              <span className="overline">{project.category}</span>
             </span>
-          ))}
-        </div>
+            <span className="text-[0.72rem] font-medium text-ink-dim">
+              {project.status}
+            </span>
+          </div>
 
-        <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4">
-          <MetaRow project={project} />
-          <Icon
-            name={project.link ? "arrow_outward" : "install_mobile"}
-            size={18}
-            className={cn(
-              "transition-transform duration-300",
-              project.link
-                ? "text-lime group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                : "text-ink-dim",
-            )}
-          />
+          <h3 className="mt-3 text-[1.2rem] font-semibold tracking-tight text-ink">
+            {project.title}
+          </h3>
+          <p className="body-sm mt-2 flex-1 text-[0.9rem]">{project.solution}</p>
+
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {project.technologies.slice(0, 3).map((tech) => (
+              <span key={tech} className="chip-flat">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4">
+            <VisitLine project={project} />
+            <Icon
+              name={project.link ? "arrow_outward" : "install_mobile"}
+              size={17}
+              className="text-ink-dim transition-all duration-300 group-hover:text-ink"
+            />
+          </div>
         </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </Reveal>
   );
 };
 

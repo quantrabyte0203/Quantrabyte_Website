@@ -1,54 +1,71 @@
 import Icon from "@/components/Icon";
+import Container from "@/components/kit/Container";
+import Reveal from "@/components/kit/Reveal";
+import { scrollToSection } from "@/components/kit/scroll";
 
-const CTA = () => {
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <section className="py-16 sm:py-20 lg:py-24">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="section-shell relative overflow-hidden rounded-3xl px-6 py-14 text-center sm:px-12 sm:py-16 lg:py-20 fade-in-up">
-          {/* Subtle grid */}
+const CTA = () => (
+  <section className="section-y">
+    <Container>
+      <Reveal>
+        <div className="card-ink relative overflow-hidden rounded-[1.75rem] px-6 py-16 text-center sm:px-12 sm:py-20">
+          {/* Restrained accent geometry */}
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-lime/20 blur-[90px]" />
+          <div className="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-lime/10 blur-[90px]" />
           <div
-            className="absolute inset-0 opacity-[0.09]"
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
+                "radial-gradient(rgba(250,250,247,0.9) 1px, transparent 1px)",
+              backgroundSize: "24px 24px",
             }}
           />
-          {/* Accent glow */}
-          <div className="hero-aurora animate-drift h-72 w-72 bg-lime/25" style={{ top: "-4rem", right: "-3rem" }} />
-          <div className="hero-aurora animate-drift h-72 w-72 bg-cyan/20" style={{ bottom: "-5rem", left: "-3rem", animationDelay: "-7s" }} />
 
-          <div className="relative">
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              Have a product in mind?
+          <div className="relative mx-auto max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 bg-paper/5 px-3.5 py-1.5 text-[0.78rem] font-medium text-paper/80">
+              <span className="h-1.5 w-1.5 rounded-full bg-lime" />
+              Accepting new projects
+            </span>
+
+            <h2 className="display-2 mt-6 text-paper">
+              Have an idea worth{" "}
+              <span className="text-lime">building?</span>
             </h2>
-            <p className="mt-4 text-lg text-ink-soft">
-              Let's turn the idea into something real.
-            </p>
-            <p className="mt-3 text-sm uppercase tracking-[0.2em] text-ink-dim">
-              AI products · SaaS · Web · Mobile · Commerce
+
+            <p className="mt-5 text-[1.05rem] leading-relaxed text-paper/70">
+              Let's turn it into a reliable, scalable digital product - with a
+              clear scope, a real timeline, and one team accountable for the
+              outcome.
             </p>
 
-            <button
-              type="button"
-              onClick={scrollToContact}
-              className="btn-primary group mt-8 px-8 py-4 text-sm"
-            >
-              Start a Project
-              <Icon name="arrow_forward" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => scrollToSection("#contact")}
+                className="btn btn-primary group h-[3.25rem] w-full px-7 text-[0.95rem] sm:w-auto"
+              >
+                Let's Talk
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-paper transition-transform duration-300 group-hover:translate-x-0.5">
+                  <Icon name="arrow_forward" size={15} />
+                </span>
+              </button>
+
+              <a
+                href="mailto:info@quantrabyte.com"
+                className="btn group h-[3.25rem] w-full border-paper/20 bg-transparent px-7 text-[0.95rem] text-paper transition-colors hover:border-paper/40 hover:bg-paper/5 sm:w-auto"
+              >
+                <Icon name="mail" size={18} />
+                info@quantrabyte.com
+              </a>
+            </div>
+
+            <p className="mt-8 text-[0.78rem] font-medium uppercase tracking-[0.16em] text-paper/40">
+              AI Products · SaaS · Web · Mobile · Commerce
+            </p>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
+      </Reveal>
+    </Container>
+  </section>
+);
 
 export default CTA;

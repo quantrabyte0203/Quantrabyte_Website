@@ -1,36 +1,52 @@
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Icon from "@/components/Icon";
+import Container from "@/components/kit/Container";
 
 const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    console.error(
+      "404 Error: User attempted to access non-existent route:",
+      location.pathname,
+    );
   }, [location.pathname]);
 
   return (
-    <div className="site-shell relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 hero-grid-bg opacity-60" />
-        <div className="hero-aurora animate-drift h-96 w-96 bg-cyan/20" style={{ top: "-6rem", right: "-4rem" }} />
-        <div className="hero-aurora animate-drift h-96 w-96 bg-lime/20" style={{ bottom: "-6rem", left: "-4rem", animationDelay: "-8s" }} />
-        <div className="hero-perspective-grid" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper py-20">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-32 -top-24 h-[30rem] w-[30rem] rounded-full bg-lime/20 blur-[110px]" />
+        <div className="dot-grid absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_50%_40%,black_5%,transparent_65%)]" />
       </div>
 
-      <div className="hud-panel relative rounded-2xl px-8 py-12 text-center sm:px-16">
-        <div className="hud-scanline rounded-2xl" />
-        <p className="mono-label">Signal lost</p>
-        <h1 className="mt-4 text-6xl font-bold tracking-tight text-gradient sm:text-7xl">404</h1>
-        <p className="mt-4 text-lg text-ink">This route does not exist.</p>
-        <p className="mt-2 text-sm text-ink-soft">
-          The page you are looking for has moved or was never deployed.
-        </p>
-        <a href="/" className="btn-primary mt-8 px-6 py-3 text-sm">
-          <Icon name="arrow_back" size={18} />
-          Return to Home
-        </a>
-      </div>
+      <Container className="relative">
+        <div className="mx-auto max-w-lg text-center">
+          <img
+            src="/projects_images/new_logo.png"
+            alt=""
+            className="animate-float mx-auto w-40 drop-shadow-[0_20px_30px_rgba(17,19,18,0.14)]"
+          />
+
+          <p className="overline mt-8">Page not found</p>
+          <h1 className="display-1 mt-3 text-[clamp(3rem,10vw,4.5rem)]">
+            <span className="lime-underline">404</span>
+          </h1>
+          <p className="lead mt-5">
+            This page has moved, or it was never here. Let's get you back to
+            solid ground.
+          </p>
+
+          <a href="/" className="btn btn-primary group mt-9 h-[3.25rem] px-7">
+            <Icon
+              name="arrow_back"
+              size={18}
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            />
+            Back to Home
+          </a>
+        </div>
+      </Container>
     </div>
   );
 };

@@ -1,113 +1,78 @@
+import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
+import Container from "@/components/kit/Container";
+import Eyebrow from "@/components/kit/Eyebrow";
+import DotField from "@/components/kit/DotField";
+import Reveal from "@/components/kit/Reveal";
+import { scrollToSection } from "@/components/kit/scroll";
 
-const heroSignals = [
-  "Agentic AI",
-  "GenAI chatbots",
-  "Shopify / WordPress",
-  "Electron apps",
+const stats = [
+  { value: "100+", label: "Projects Shipped" },
+  { value: "50+", label: "Client Launches" },
+  { value: "8+", label: "Years Building" },
+  { value: "24h", label: "Response Window" },
 ];
 
-const heroMetrics = [
-  { value: "100+", label: "Products shipped" },
-  { value: "24h", label: "Response window" },
-  { value: "8+", label: "Years building" },
-];
-
-const tickerItems = [
-  "Generative AI",
-  "AI Agents",
-  "RAG Systems",
-  "SaaS Platforms",
-  "Mobile Apps",
-  "Commerce",
-  "Cloud Infrastructure",
-  "Design Systems",
-];
-
-/** How a QuantraByte engagement actually runs, shown as a live console. */
-const pipeline = [
-  { label: "Discovery & scoping", state: "done", note: "Week 1" },
-  { label: "Design system", state: "done", note: "Week 2" },
-  { label: "Engineering", state: "active", note: "72%" },
-  { label: "Launch & scale", state: "queued", note: "Queued" },
-] as const;
-
-const stack = ["React", "TypeScript", "Node", "AI"];
-
-const Hero = () => {
-  const scrollTo = (selector: string) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <section
-      id="home"
-      className="relative overflow-hidden pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pb-20 lg:pt-36"
-    >
-      {/* Layered futuristic backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 hero-grid-bg opacity-70" />
-        <div className="absolute inset-0 hero-radial" />
-        <div
-          className="hero-aurora animate-drift h-[26rem] w-[26rem] bg-lime/25"
-          style={{ top: "-6rem", left: "-4rem" }}
-        />
-        <div
-          className="hero-aurora animate-drift h-[30rem] w-[30rem] bg-cyan/20"
-          style={{ top: "2rem", right: "-6rem", animationDelay: "-6s" }}
-        />
-        <div
-          className="hero-aurora animate-drift h-[24rem] w-[24rem] bg-violet/20"
-          style={{ bottom: "-8rem", left: "35%", animationDelay: "-11s" }}
-        />
-        <div className="hero-perspective-grid" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-paper to-transparent" />
+const Hero = () => (
+  <section id="home" className="relative isolate overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-36">
+    {/* Ambient ground - kept extremely light */}
+    <div className="pointer-events-none absolute inset-0 z-0">
+      <div className="absolute -right-32 -top-24 h-[30rem] w-[30rem] rounded-full bg-lime/12 blur-[120px]" />
+      <div className="absolute -left-40 top-40 h-[24rem] w-[24rem] rounded-full bg-lime-soft/30 blur-[110px]" />
+      <div
+        className="absolute inset-0"
+        style={{
+          maskImage:
+            "radial-gradient(ellipse 85% 75% at 55% 40%, black 30%, transparent 85%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 85% 75% at 55% 40%, black 30%, transparent 85%)",
+        }}
+      >
+        <DotField />
       </div>
+    </div>
 
-      <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-14">
-          <div>
-            <div className="section-kicker fade-in-up">
-              <span className="accent-dot" />
-              AI-native product engineering
-            </div>
+    <Container className="relative z-10">
+      <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-6">
+        {/* Copy */}
+        <div className="max-w-xl">
+          <Reveal>
+            <Eyebrow>AI-Native Product Engineering Studio</Eyebrow>
+          </Reveal>
 
-            <h1 className="mt-6 max-w-[19ch] text-[clamp(2.15rem,4.2vw,3.5rem)] font-bold leading-[1.06] tracking-tight text-ink fade-in-up">
-              We build <span className="text-gradient">AI-powered</span> digital
-              products and next-gen software.
+          <Reveal delay={0.06}>
+            <h1 className="display-1 mt-6 text-ink">
+              Building digital
+              <br className="hidden sm:block" /> products that{" "}
+              <span className="lime-underline">think ahead.</span>
             </h1>
+          </Reveal>
 
-            <p
-              className="section-copy mt-5 max-w-xl fade-in-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              QuantraByte blends agentic AI, GenAI assistants, premium interface
-              design, and production-grade engineering to turn ambitious ideas
-              into launch-ready products.
+          <Reveal delay={0.12}>
+            <p className="lead mt-6 max-w-lg">
+              We design and build AI-powered web, mobile and SaaS products that
+              solve real business problems - from first scope to a launched,
+              scalable system.
             </p>
+          </Reveal>
 
-            <div
-              className="mt-7 flex flex-col gap-3 sm:flex-row fade-in-up"
-              style={{ animationDelay: "0.2s" }}
-            >
+          <Reveal delay={0.18}>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <button
-                onClick={() => scrollTo("#contact")}
-                className="btn-primary group px-7 py-3.5 text-sm"
+                type="button"
+                onClick={() => scrollToSection("#contact")}
+                className="btn btn-primary group h-[3.25rem] px-7 text-[0.95rem]"
               >
                 Start a Project
-                <Icon
-                  name="arrow_forward"
-                  size={18}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-paper transition-transform duration-300 group-hover:translate-x-0.5">
+                  <Icon name="arrow_forward" size={15} />
+                </span>
               </button>
 
               <button
-                onClick={() => scrollTo("#portfolio")}
-                className="btn-ghost group px-7 py-3.5 text-sm"
+                type="button"
+                onClick={() => scrollToSection("#work")}
+                className="btn btn-outline group h-[3.25rem] px-7 text-[0.95rem]"
               >
                 View Our Work
                 <Icon
@@ -117,193 +82,165 @@ const Hero = () => {
                 />
               </button>
             </div>
+          </Reveal>
 
-            <div
-              className="mt-7 flex flex-wrap gap-2 fade-in-up"
-              style={{ animationDelay: "0.3s" }}
-            >
-              {heroSignals.map((signal) => (
-                <span key={signal} className="badge-chip">
-                  <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                  {signal}
-                </span>
-              ))}
-            </div>
-
-            <div
-              className="mt-8 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-6 fade-in-up"
-              style={{ animationDelay: "0.4s" }}
-            >
-              {heroMetrics.map((metric) => (
-                <div key={metric.label}>
-                  <div className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
-                    {metric.value}
-                  </div>
-                  <div className="mt-1 text-xs leading-5 text-ink-soft sm:text-sm">
-                    {metric.label}
-                  </div>
+          {/* Proof row */}
+          <Reveal delay={0.24}>
+            <dl className="card mt-10 grid grid-cols-2 gap-x-4 gap-y-6 p-5 sm:grid-cols-4 sm:gap-x-2 sm:p-6">
+              {stats.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={
+                    index > 0
+                      ? "sm:border-l sm:border-line sm:pl-5"
+                      : undefined
+                  }
+                >
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd>
+                    <span className="block text-[1.65rem] font-bold leading-none tracking-tight text-lime-ink sm:text-[1.75rem]">
+                      {stat.value}
+                    </span>
+                    <span className="mt-2 block text-[0.78rem] font-medium leading-tight text-ink-soft">
+                      {stat.label}
+                    </span>
+                  </dd>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Delivery console */}
-          <div
-            className="relative fade-in-right hidden lg:block"
-            style={{ animationDelay: "0.25s" }}
-          >
-            <HeroVisual />
-          </div>
+            </dl>
+          </Reveal>
         </div>
 
-        {/* Capability ticker */}
-        <div
-          className="ticker-mask mt-12 overflow-hidden border-y border-line py-4 fade-in-up sm:mt-14"
-          style={{ animationDelay: "0.5s" }}
-        >
-          <div className="ticker-track">
-            {[...tickerItems, ...tickerItems].map((item, index) => (
-              <span
-                key={`${item}-${index}`}
-                className="flex shrink-0 items-center gap-3 text-sm font-medium uppercase tracking-[0.2em] text-ink-soft"
-              >
-                <span className="h-1 w-1 rounded-full bg-cyan" />
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
+        {/* Mascot */}
+        <Reveal delay={0.1} className="relative lg:-mt-6">
+          <HeroMascot />
+        </Reveal>
       </div>
-    </section>
+    </Container>
+  </section>
+);
+
+const HeroMascot = () => {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const reduced = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const coarse = window.matchMedia?.("(pointer: coarse)").matches;
+    if (reduced || coarse) return;
+
+    let frame = 0;
+    const onMove = (e: MouseEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const node = wrapRef.current;
+        if (!node) return;
+        const rect = node.getBoundingClientRect();
+        const dx = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
+        const dy = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
+        // Deliberately tiny - this should register as depth, not movement
+        setOffset({
+          x: Math.max(-1, Math.min(1, dx)) * 10,
+          y: Math.max(-1, Math.min(1, dy)) * 8,
+        });
+      });
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <div ref={wrapRef} className="relative isolate mx-auto w-full max-w-[30rem] lg:max-w-none">
+      {/* Glow + rings behind the character */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime/18 blur-[85px] sm:h-[26rem] sm:w-[26rem] lg:h-[30rem] lg:w-[30rem]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[19rem] w-[19rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-line sm:h-[23rem] sm:w-[23rem] lg:h-[27rem] lg:w-[27rem]" />
+
+      {/* Trail the mascot walks along */}
+      <svg
+        viewBox="0 0 420 300"
+        className="pointer-events-none absolute inset-x-0 bottom-2 z-0 w-full"
+        aria-hidden="true"
+      >
+        <path
+          d="M18 268 C 120 292, 260 276, 402 196"
+          fill="none"
+          stroke="#C8F03A"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray="1 14"
+        />
+      </svg>
+
+      <div
+        className="animate-sway relative z-10"
+        style={{
+          transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+          transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
+      >
+        <img
+          src="/projects_images/new_logo.png"
+          alt="Byte, the QuantraByte mascot, walking forward"
+          width={680}
+          height={640}
+          className="mx-auto w-[50%] max-w-[13rem] drop-shadow-[0_30px_44px_rgba(17,19,18,0.18)] sm:w-[50%] lg:w-[72%] lg:max-w-none"
+        />
+      </div>
+
+      {/* Availability marker - fills the head space above the character */}
+      <div className="absolute right-0 top-0 hidden lg:block">
+        <span className="flex items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2.5 shadow-soft">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-lime" />
+          </span>
+          <span className="text-[0.8rem] font-medium text-ink">
+            Accepting new projects
+          </span>
+        </span>
+      </div>
+
+      {/* Floating capability tags, spread around the character */}
+      {[
+        {
+          label: "AI Agents",
+          className: "left-0 top-[20%] sm:flex",
+          delay: "0s",
+        },
+        {
+          label: "SaaS Platforms",
+          className: "right-0 top-[40%] sm:flex",
+          delay: "-3.5s",
+        },
+        {
+          label: "Mobile Apps",
+          className: "bottom-[16%] left-[2%] lg:flex",
+          delay: "-6s",
+        },
+        {
+          label: "Commerce",
+          className: "bottom-[1%] right-[3%] lg:flex",
+          delay: "-8.5s",
+        },
+      ].map((tag) => (
+        <span
+          key={tag.label}
+          className={`animate-float absolute hidden items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-2 text-[0.78rem] font-medium text-ink shadow-soft ${tag.className}`}
+          style={{ animationDelay: tag.delay }}
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-lime" />
+          {tag.label}
+        </span>
+      ))}
+
+    </div>
   );
 };
-
-const stateStyles = {
-  done: {
-    icon: "check_circle",
-    dot: "border-lime/60 bg-lime/20 text-lime",
-    note: "text-lime",
-  },
-  active: {
-    icon: "autorenew",
-    dot: "border-cyan/60 bg-cyan/20 text-cyan",
-    note: "text-cyan",
-  },
-  queued: {
-    icon: "schedule",
-    dot: "border-line bg-surface text-ink-dim",
-    note: "text-ink-dim",
-  },
-} as const;
-
-const HeroVisual = () => (
-  <div className="relative ml-auto aspect-square w-full max-w-[26rem]">
-    {/* Orbital rings */}
-    <div className="orbit-ring animate-spin-slow inset-[-5%]" />
-    <div className="orbit-ring animate-spin-reverse inset-[7%] border-lime/20" />
-
-    {/* Core glow */}
-    <div className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/10 blur-3xl" />
-
-    {/* Console */}
-    <div className="hud-panel animate-float-slow absolute inset-[8%] flex flex-col rounded-[1.6rem] p-5">
-      <div className="hud-scanline rounded-[1.6rem]" />
-
-      {/* Header */}
-      <div className="relative flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-lime/40 bg-lime/10">
-            <Icon name="rocket_launch" size={15} className="text-lime" />
-          </span>
-          <span className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">
-            Delivery pipeline
-          </span>
-        </div>
-        <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
-          <span className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-lime">
-            Live
-          </span>
-        </div>
-      </div>
-
-      {/* Pipeline stepper */}
-      <div className="relative mt-5 flex-1">
-        {/* connector rail */}
-        <span className="absolute bottom-8 left-[13px] top-6 w-px bg-gradient-to-b from-lime/50 via-cyan/40 to-line" />
-
-        <div className="space-y-2.5">
-          {pipeline.map((step) => {
-            const s = stateStyles[step.state];
-            return (
-              <div key={step.label} className="relative flex items-center gap-3">
-                <span
-                  className={`relative z-10 flex h-[27px] w-[27px] shrink-0 items-center justify-center rounded-full border ${s.dot}`}
-                >
-                  <Icon name={s.icon} size={14} />
-                </span>
-                <div className="flex min-w-0 flex-1 items-center justify-between gap-2 rounded-lg border border-line bg-surface/60 px-3 py-2">
-                  <span className="truncate text-xs font-medium text-ink">
-                    {step.label}
-                  </span>
-                  <span className={`shrink-0 text-[0.65rem] font-semibold ${s.note}`}>
-                    {step.note}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* build progress */}
-        <div className="ml-[39px] mt-2.5 h-1 overflow-hidden rounded-full bg-line">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-lime to-cyan"
-            style={{ width: "72%", animation: "fadeInLeft 1s 0.5s both" }}
-          />
-        </div>
-      </div>
-
-      {/* Stack */}
-      <div className="relative mt-4 border-t border-line pt-3">
-        <div className="flex flex-wrap items-center gap-1.5">
-          {stack.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-md border border-line bg-surface/70 px-2 py-1 text-[0.65rem] font-medium text-ink-soft"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    {/* Floating status chips */}
-    <div className="hud-panel animate-float absolute -left-5 top-14 rounded-xl px-3.5 py-2.5">
-      <div className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
-        Live products
-      </div>
-      <div className="mt-1 text-sm font-bold text-lime">7</div>
-    </div>
-
-    <div
-      className="hud-panel animate-float absolute -right-4 bottom-16 rounded-xl px-3.5 py-2.5"
-      style={{ animationDelay: "-3s" }}
-    >
-      <div className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">
-        First reply
-      </div>
-      <div className="mt-1 text-sm font-bold text-cyan">24h</div>
-    </div>
-
-    <div className="hud-panel absolute -bottom-3 left-3 rounded-xl px-4 py-2.5">
-      <div className="flex items-center gap-2">
-        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
-        <span className="text-xs font-medium text-ink">Accepting new projects</span>
-      </div>
-    </div>
-  </div>
-);
 
 export default Hero;
